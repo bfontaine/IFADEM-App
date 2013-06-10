@@ -14,7 +14,7 @@ $loader = new Twig_Loader_Filesystem(TPL_DIR);
 $tpl_engine = new Twig_Environment($loader, array(
     'cache'            => TPL_CACHE_DIR,
     'charset'          => 'utf-8',
-    'strict_variables' => true,
+    'strict_variables' => false,
     'autoescape'       => true
 ));
 

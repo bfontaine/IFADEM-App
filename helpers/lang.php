@@ -15,3 +15,4 @@ function _l($str, $lang=null) {
     }
     return $str;
 }
+

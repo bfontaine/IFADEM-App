@@ -4,9 +4,20 @@
  * Configuration file for the IFADEM Web app.
  * ---
  *
+ *
+ * === Web Services ===
+ *
+ *
  * The session key (authentification key) used for Web services: */
 define('WS_SESS_KEY', '1');
 /*
+ *
+ * The Web services base URL: */
+define('WS_URL', 'https://c2i.education.fr/ifademws/ws.php');
+/*
+ *
+ * === URLS ===
+ *
  *
  * The root for all URLs. For example, if the URL of the index of the Web app
  * is
@@ -16,6 +27,9 @@ define('WS_SESS_KEY', '1');
  * end. */
 define('ROOT', 'ifadem-02.bfontaine.net');
 /*
+ *
+ * === Localisation ===
+ *
  *
  * The default language of the website. This is used for localisation. See the
  * $langdir directory for a list of available languages. */
@@ -36,6 +50,9 @@ define('TPL_DIR', __DIR__ . '/tpl');
  * The directory for templates caching (default: ./tpl/cache): */
 define('TPL_CACHE_DIR', __DIR__ . '/tpl/cache');
 /*
+ *
+ * === DATA ===
+ *
  *
  * The file where users' data is stored. This is not sensitive data, so it
  * will be in plain json (default: ./usersdata.json): */
