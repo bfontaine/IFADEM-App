@@ -9,10 +9,10 @@ include_once __DIR__ . '/config.php';
 // Twig initialization
 Twig_Autoloader::register();
 
-$loader = new Twig_Loader_Filesystem($tpldir);
+$loader = new Twig_Loader_Filesystem(TPL_DIR);
 
 $tpl_engine = new Twig_Environment($loader, array(
-    'cache'            => $tplcachedir,
+    'cache'            => TPL_CACHE_DIR,
     'charset'          => 'utf-8',
     'strict_variables' => true,
     'autoescape'       => true

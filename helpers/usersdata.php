@@ -15,7 +15,7 @@
 function load_user_data($userid=null) {
 
     if ($userid != null) {
-        $data = json_decode(file_get_contents($datafile));
+        $data = json_decode(file_get_contents(DATA_FILE));
 
         if (isset($data[$userid])) {
             return $data[$userid];
@@ -34,7 +34,7 @@ function load_user_data($userid=null) {
  **/
 function save_user_data($userdata) {
 
-    $data = json_decode(file_get_contents($datafile));
+    $data = json_decode(file_get_contents(DATA_FILE));
     $data[$userdata['id']] = $userdata;
     file_put_contents($datafile, json_encode($data));
 
