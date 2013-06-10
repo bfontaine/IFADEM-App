@@ -22,3 +22,20 @@ function tpl_render($tp, $values) {
     return $tpl_engine->render($tp, tpl_array($values));
 }
 
+// return a human-readable size
+function tpl_size($s) {
+
+    $units = array('o', 'ko', 'Mo', 'Go');
+    $unit_index = 0;
+
+    while ($s > 1000) {
+        // we keep one decimal
+        $s = (int)($s/100);
+        $s /= 10;
+
+        $unit_index += 1;
+    }
+
+    return ''.$s . ' ' . $units[$unit_index];
+
+}

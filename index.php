@@ -22,6 +22,8 @@ foreach($ressources as $r) {
         $countries[$country['id']] = $country;
     }
 
+    $r['size'] = tpl_size($r['size']);
+
     $countries[$country['id']]['contents'] []= $r;
 }
 
