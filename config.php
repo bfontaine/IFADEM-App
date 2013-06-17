@@ -4,13 +4,10 @@
  * Configuration file for the IFADEM Web app.
  * ---
  *
- *
- * === Web Services ===
- *
- *
- * The session key (authentification key) used for Web services: */
-define('WS_SESS_KEY', '1');
+ * Current environment. Use 'dev' or 'prod': */
+define('ENV', 'dev');
 /*
+ * === Web Services ===
  *
  * The Web services base URL: */
 define('WS_URL', 'https://c2i.education.fr/ifademws/ws.php');
