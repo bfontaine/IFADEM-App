@@ -16,3 +16,21 @@ function _l($str, $lang=null) {
     return $str;
 }
 
+
+/**
+ * Return a standard lang code from the one returned by a call to the
+ * Web services. For example, the standard code for 'fre' (French) is 'fr'.
+ **/
+function get_lang_code($c) {
+    if ($c === 'fre') { return 'fr'; } // I haven't seen more codes right now
+    return $c;
+}
+
+/**
+ * Return a language name from the one returned by a call to the
+ * Web services.
+ **/
+function get_lang_name($c) {
+    if ($c === 'fre') { return 'français'; } // I haven't seen more codes right now
+    return $c;
+}

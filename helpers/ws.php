@@ -16,15 +16,6 @@ function ws_call($fn, $args=array()) {
 }
 
 /**
- * Return a standard lang code from the one returned by a call to the
- * Web services. For example, the standard code for 'fre' (French) is 'fr'.
- **/
-function get_lang_code($c) {
-    if ($c === 'fre') { return 'fr'; }
-    return $c;
-}
-
-/**
  * Return an array of all countries:
  *  array(
  *      array( 'name' => 'Foo', 'id' => 1 ),
@@ -69,11 +60,12 @@ function get_ressources() {
             'duration'    => $ressource['Duree_Execution_Ressource'],
             'format'      => $ressource['Format'],
             'id'          => $ressource['Reference'],
-            'lang'        => get_lang_code($ressource['Langue']),
+            'lang_code'   => get_lang_code($ressource['Langue']),
+            'lang'        => get_lang_name($ressource['Langue']),
             'licence'     => $ressource['Licence'],
             'price'       => $ressource['Cout'],
             'remarks'     => $ressource['Remarques_installation'],
-            'size'        => $ressource['Taille_Ressource'],
+            'size'        => (int)$ressource['Taille_Ressource'],
             'title'       => $ressource['Titre'],
             'validated'   => $ressource['validation'],
             'version'     => $ressource['Version'],
@@ -97,26 +89,32 @@ function get_ressources() {
 
 /**
  * Return an array of all MP3s if called without any argument,
- * and return an array of MP3s for the ressources whose id is passed
+ * and return an array of MP3s for the ressource whose id is passed
  * as an argument, if any. Each MP3 is an associative array with
  * the following keys: id, ressource_id, url, size.
  **/
 function get_mp3s($id=null) {
     $params = array();
     if ($id != null) {
-        $params['critere'] = $id;
+        $params['critere'] = 'Reference=' . $id;
     }
 
     $raw_mp3s = ws_call('getAllMP3', $params);
     $mp3s = array();
 
-    foreach ($mp3s as $mp3) {
+    foreach ($raw_mp3s as $mp3) {
+        $url = $mp3['Entree_Identifiant'];
+
+        // skip ZIP files
+        if (strripos($url, '.zip', -4) === -4) { continue; }
+
         $mp3s []= array(
             'id'           => $mp3['id'],
             'ressource_id' => $mp3['Reference'],
-            'url'          => $mp3['Entree_Identifiant']
+            'url'          => $url,
+            'size'         => (int)$mp3['Taille']
         );
     }
 
-    return $mp3;
+    return $mp3s;
 }
