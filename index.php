@@ -22,7 +22,15 @@ foreach($ressources as $r) {
         $countries[$country['id']] = $country;
     }
 
-    $r['size'] = tpl_size($r['size']);
+    $size = (int)$r['size'];
+
+    // MP3s
+    $mp3s = get_mp3s($r['id']);
+
+    foreach ($mp3s as $mp3) { $size += (int)$mp3['size']; }
+
+    $r['size'] = tpl_size($size);
+    $r['mp3s'] = $mp3s;
 
     $countries[$country['id']]['contents'] []= $r;
 }
