@@ -1,3 +1,9 @@
-.ui-li-static.ui-li-has-thumb {
-    padding-left: 75px;
+/* jQuery default UI fixes */
+.ui-li-static.ui-li-has-thumb { padding-left: 75px; }
+.ui-li-thumb { max-width:65px; }
+.ui-li-aside { width:auto; }
+
+
+.content.selected {
+    background-color: #afa;
 }
