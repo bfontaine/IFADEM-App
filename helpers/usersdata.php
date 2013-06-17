@@ -39,3 +39,9 @@ function save_user_data($userdata) {
     file_put_contents($datafile, json_encode($data));
 
 }
+
+function get_username() {
+    if (!isset($_COOKIE) || !isset($_COOKIE['username'])) { return false; }
+
+    return $_COOKIE['username'];
+}
