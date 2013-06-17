@@ -18,24 +18,23 @@
         <link rel="apple-touch-icon-precomposed" href="imgs/ifadem-logo.png" />
     </head>
     <body>
-        <script type="data/json" id="server-data">{{ json_data|default('{}') }}</script>
+        <script type="data/json" id="json-countries">{{ countries|json_encode()|raw }}</script>
 
         <div data-role="page" id="home">
             <div data-role="header">
                 {#
                 <a href="#help" data-role="button" data-icon="info" data-iconpos="notext">{{ help.button|default('Aide') }}</a>
                 #}
-                <a href="#" data-role="button"
-                            data-icon="delete"
-                            data-iconpos="notext"
-                            id="cancel-selection">{{ buttons.check|default('Annuler') }}</a>
-                        
+
+                {# This prevent the other button to go on the left of the title #}
+                <a href="#" style="display:none"></a>
+
                 <h1>{{ title|default('IFADEM') }}</h1>
 
                 <a href="#" data-role="button"
                             data-icon="check"
                             data-iconpos="notext"
-                            id="select-els">{{ buttons.check|default('OK') }}</a>
+                            id="select-contents">{{ buttons.check|default('OK') }}</a>
 
             </div>
             <div data-role="content">
@@ -43,13 +42,13 @@
                     {% for country in countries %}
                     <div data-role="collapsible">
                         <h2>{{ country.name }}</h2>
-                        <ul data-role="listview">
+                        <ul data-role="listview" data-filter="true"
+                                                 data-filter-placeholder="{{ filter.placeholder|default('Filtrer les ressources…') }}">
                             {% for content in country.contents %}
-                            <li data-content-id="{{ content.id }}" class="content">
+                            <li data-content-id="{{ content.id }}" class="content{% if content.selected %} selected{% endif %}">
                                 <img src="{{ content.thumbnail }}" class="content-thumbnail" />
                                 <h3>{{ content.title }}</h3>
                                 <p>{{ content.description }}</p>
-                                <input type="checkbox" {% if content.selected %}checked="checked"{% endif %} />
                                 <p class="ui-li-aside">{{ content.size }}</p>
                             </li>
                             {% endfor %}
@@ -59,6 +58,21 @@
                 </div>
             </div>
         </div>
+
+        {% for country in countries %}
+            {% for content in country.contents %}
+        <div data-role="popup" id="content-details-{{ content.id }}">
+            <h3>{{ content.title }}</h3>
+            <p>{{ content.description }}</p>
+            <ul class="content-infos">
+                <li>Difficulté&nbsp;: {{ content.difficulty|default('non précisée') }}</li>
+                <li>Langue&nbsp;: {{ content.lang|default('non précisée') }}</li>
+                <li>Date de création&nbsp;: {{ content.creation_date|date('d/m/Y à H:i') }}</li>
+                <li>Date de dernière modification&nbsp;: {{ content.modification_date|date('d/m/Y à H:i') }}</li>
+            </ul>
+        </div>
+            {% endfor %}
+        {% endfor %}
 
         {#
         <div data-role="page" id="help">
@@ -70,5 +84,6 @@
         </div>
         #}
 
+        <script src="js/app.js"></script>
     </body>
 </html>
