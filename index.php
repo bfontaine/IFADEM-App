@@ -31,6 +31,7 @@ foreach($ressources as $r) {
 
     $r['size'] = tpl_size($size);
     $r['mp3s'] = $mp3s;
+    $r['mp3s_count'] = count($mp3s);
 
     $countries[$country['id']]['contents'] []= $r;
 }
