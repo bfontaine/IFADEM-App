@@ -18,7 +18,9 @@
         <link rel="apple-touch-icon-precomposed" href="imgs/ifadem-logo.png" />
     </head>
     <body>
+        {#
         <script type="data/json" id="json-countries">{{ countries|json_encode()|raw }}</script>
+        #}
 
         <div data-role="page" id="home">
             <div data-role="header">
@@ -57,22 +59,22 @@
                     {% endfor %}
                 </div>
             </div>
-        </div>
 
-        {% for country in countries %}
-            {% for content in country.contents %}
-        <div data-role="popup" id="content-details-{{ content.id }}">
-            <h3>{{ content.title }}</h3>
-            <p>{{ content.description }}</p>
-            <ul class="content-infos">
-                <li>Difficulté&nbsp;: {{ content.difficulty|default('non précisée') }}</li>
-                <li>Langue&nbsp;: {{ content.lang|default('non précisée') }}</li>
-                <li>Date de création&nbsp;: {{ content.creation_date|date('d/m/Y à H:i') }}</li>
-                <li>Date de dernière modification&nbsp;: {{ content.modification_date|date('d/m/Y à H:i') }}</li>
-            </ul>
-        </div>
+            {% for country in countries %}
+                {% for content in country.contents %}
+            <div data-role="popup" id="content-details-{{ content.id }}">
+                <h3>{{ content.title }}</h3>
+                <p>{{ content.description }}</p>
+                <ul class="content-infos">
+                    <li>Difficulté&nbsp;: {{ content.difficulty|default('non précisée') }}</li>
+                    <li>Langue&nbsp;: {{ content.lang|default('non précisée') }}</li>
+                    <li>Date de création&nbsp;: {{ content.creation_date|date('d/m/Y à H:i') }}</li>
+                    <li>Date de dernière modification&nbsp;: {{ content.modification_date|date('d/m/Y à H:i') }}</li>
+                </ul>
+            </div>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+        </div>
 
         {#
         <div data-role="page" id="help">
