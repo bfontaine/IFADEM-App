@@ -71,7 +71,9 @@ function get_ressources() {
             'version'     => $ressource['Version'],
 
             'content'     => $ressource['Entree_Identifiant'],
-            'thumbnail'   => $ressource['Image'],
+            'thumbnail'   => $ressource['Image']
+                                    ? $ressource['Image']
+                                    : 'imgs/default-icon.png',
 
             'country'     => array(
                 'id'   => $ressource['Couverture'],
@@ -79,7 +81,10 @@ function get_ressources() {
             ),
 
             'creation_date'     => $ressource['Date_Creation'],
-            'modification_date' => $ressource['Date_Modification']
+            'modification_date' =>
+                $ressource['Date_Modification'] !== $ressource['Date_Creation']
+                    ? $ressource['Date_Modification']
+                    : null
 
         );
     }

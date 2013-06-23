@@ -11,10 +11,14 @@ Mardi 18/06, 16h.
 - [x] fermer la pop-up au clic
 - [x] sélectionner une ressource au clic sur tout l’élément, sauf l’image.
 - [x] Afficher le nombre de MP3 dans la popup
-- mettre une image par défaut pour les contenus sans image
+- [x] mettre une image par défaut pour les contenus sans image
+- [x] Ne pas montrer la date de dernière modification si la ressource n’a pas
+  été modifiée depuis sa création
 - Mettre le nombre/taille des contenus sélectionnés à côté du nom du pays, pour
   voir rapidement où sont les éléments sélectionnés quand tout est replié.
 - Ajouter un textfield pour le nom d’utilisateur
 - Quand on sélectionne des livrets, mettre la taille totale des fichiers
   sélectionnés en haut
 - Filtrer (aussi) sur les tags avec le champ de filtre
+
+Semaine du 24 juin.

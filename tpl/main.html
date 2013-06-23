@@ -70,7 +70,9 @@
                     <li>Difficulté&nbsp;: {{ content.difficulty|default('non précisée') }}</li>
                     <li>Langue&nbsp;: {{ content.lang|default('non précisée') }}</li>
                     <li>Date de création&nbsp;: {{ content.creation_date|date('d/m/Y à H:i') }}</li>
+                    {% if content.modification_date %}
                     <li>Date de dernière modification&nbsp;: {{ content.modification_date|date('d/m/Y à H:i') }}</li>
+                    {% endif %}
                     <li>Nombre de fichiers MP3&nbsp;: {{ content.mp3s_count }}</li>
                 </ul>
             </div>
