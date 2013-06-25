@@ -19,6 +19,7 @@ foreach($ressources as $r) {
 
     if (!isset($countries[$country['id']])) {
         $country['contents'] = array();
+        $country['selected_count'] = 0; // number of selected ressources
         $countries[$country['id']] = $country;
     }
 
@@ -32,6 +33,10 @@ foreach($ressources as $r) {
     $r['size'] = tpl_size($size);
     $r['mp3s'] = $mp3s;
     $r['mp3s_count'] = count($mp3s);
+
+    if (isset($r['selected']) && $r['selected']) {
+        $countries[$country['id']]['selected_count'] += 1;
+    }
 
     $countries[$country['id']]['contents'] []= $r;
 }

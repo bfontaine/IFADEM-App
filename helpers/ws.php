@@ -123,3 +123,30 @@ function get_mp3s($id=null) {
 
     return $mp3s;
 }
+
+/**
+ * Return an array of all tags if called without any argument,
+ * and return an array of tags for the ressource whose id is passed
+ * as an argument, if any. Each tag is an associative array with
+ * the following keys: id, ressource_id, name.
+ **/
+function get_tags($id=null) {
+    $params = array();
+    if ($id != null) {
+        $params['critere'] = 'Reference=' . $id;
+    }
+
+    $raw_tags = ws_call('getAllTags', $params);
+    $tags = array();
+
+    foreach ($raw_tags as $tag) {
+        $tags []= array(
+            'id'           => $tag['id'],
+            'ressource_id' => $tag['Reference'],
+            'name'         => $tag['Mot_clef_libre']
+        );
+    }
+
+    return $tags;
+
+}

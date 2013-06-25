@@ -28,8 +28,9 @@
                 <a href="#help" data-role="button" data-icon="info" data-iconpos="notext">{{ help.button|default('Aide') }}</a>
                 #}
 
-                {# This prevent the other button to go on the left of the title #}
-                <a href="#" style="display:none"></a>
+                <a href="#cancelling-confirmation" data-role="button" data-rel="popup"
+                                                   data-icon="delete" data-iconpos="notext"
+                                                   id="b_cancel" class="nodisplay">{{ buttons.cancel|default('Annuler') }}</a>
 
                 <h1>{{ title|default('IFADEM') }}</h1>
 
@@ -40,11 +41,16 @@
 
             </div>
             <div data-role="content">
+
+                <div data-role="fieldcontain">
+                    <label for="pseudo_inp">Pseudo&nbsp;:</label>
+                    <input type="text" name="pseudo" id="pseudo_inp" value="" data-mini="true" />
+                </div>
+
                 <div data-role="collapsible-set" data-inset="false">
                     {% for country in countries %}
                     <div data-role="collapsible">
-                        {# TODO: utiliser le CSS de ui-li-count #}
-                        <h2>{{ country.name }}<span class="selected-count">{# TODO #}</span></h2>
+                        <h2>{{ country.name }}<span class="selected-count"><span class="count">{{ country.selected_count }}</span>/{{ country.contents|length|default('0') }}</span></h2>
                         <ul data-role="listview" data-filter="true"
                                                  data-filter-placeholder="{{ filter.placeholder|default('Filtrer les ressources…') }}">
                             {% for content in country.contents %}
@@ -78,6 +84,14 @@
             </div>
                 {% endfor %}
             {% endfor %}
+
+            <div data-role="popup" id="cancelling-confirmation">
+                <p>Êtes-vous sûr de vouloir annuler toute la sélection&nbsp;?
+                   Cette action est irréversible, et désélectionnera
+                   toutes les ressources actuellement sélectionnées.</p>
+                <a href="#home" data-role="button" data-rel="back">Non</a>
+                <a href="#home" data-role="button" data-rel="back" id="confirm-cancelling">Oui</a>
+            </div>
         </div>
 
         {#
