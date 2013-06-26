@@ -17,9 +17,13 @@ Mardi 18/06, 16h.
 - [x] Mettre le nombre/taille des contenus sélectionnés à côté du nom du pays, pour
       voir rapidement où sont les éléments sélectionnés quand tout est replié.
 - [x] Ajouter un textfield pour le nom d’utilisateur
-- Quand on sélectionne des livrets, mettre la taille totale des fichiers
-  sélectionnés en haut
-- Filtrer (aussi) sur les tags avec le champ de filtre
 
 Mercredi 26/06, 10h.
 
+- [x] Ajouter les logos des organisations sur la page principale de l’appli
+- Quand on sélectionne des livrets, mettre la taille totale des fichiers
+  sélectionnés en haut
+- Filtrer (aussi) sur les tags avec le champ de filtre
+- Mettre le champ de pseudo sur une seule ligne
+- Remplir la page « À Propos » avec les noms des gens (cf mail JBY)
+- Remplir la page « Aide »

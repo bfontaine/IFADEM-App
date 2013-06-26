@@ -24,9 +24,6 @@
 
         <div data-role="page" id="home">
             <div data-role="header">
-                {#
-                <a href="#help" data-role="button" data-icon="info" data-iconpos="notext">{{ help.button|default('Aide') }}</a>
-                #}
 
                 <a href="#cancelling-confirmation" data-role="button" data-rel="popup"
                                                    data-icon="delete" data-iconpos="notext"
@@ -65,6 +62,17 @@
                     </div>
                     {% endfor %}
                 </div>
+                <div>
+                    <img class="logo" src="imgs/oif.png" width="239" height="103" alt="OIF" />
+                    <img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />
+                    <img class="logo square" src="imgs/auf.png" width="140" height="100" alt="AUF" />
+                </div>
+                <a href="#help"    data-inline="true" data-role="button"
+                                   data-mini="true"
+                                   data-icon="info" data-iconpos="left">{{ buttons.help|default('Aide') }}</a>
+                <a href="#apropos" data-inline="true" data-role="button"
+                                   data-mini="true"
+                                   data-icon="info" data-iconpos="left">{{ buttons.apropos|default('À Propos') }}</a>
             </div>
 
             {% for country in countries %}
@@ -75,9 +83,9 @@
                 <ul class="content-infos">
                     <li>Difficulté&nbsp;: {{ content.difficulty|default('non précisée') }}</li>
                     <li>Langue&nbsp;: {{ content.lang|default('non précisée') }}</li>
-                    <li>Date de création&nbsp;: {{ content.creation_date|date('d/m/Y à H:i') }}</li>
+                    <li>Créé le {{ content.creation_date|date('d/m/Y à H:i') }}</li>
                     {% if content.modification_date %}
-                    <li>Date de dernière modification&nbsp;: {{ content.modification_date|date('d/m/Y à H:i') }}</li>
+                    <li>Modifié le {{ content.modification_date|date('d/m/Y à H:i') }}</li>
                     {% endif %}
                     <li>Nombre de fichiers MP3&nbsp;: {{ content.mp3s_count }}</li>
                 </ul>
@@ -94,15 +102,41 @@
             </div>
         </div>
 
-        {#
         <div data-role="page" id="help">
             <div data-role="header">
                 <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">{{ back_button|default('Retour') }}</a>
                 <h1>{{ help.title|default('Aide') }}</h1>
             </div>
-            <div data-role="content">{{ help.text|default('') }}</div>
+            <div data-role="content">TODO</div>
         </div>
-        #}
+
+        <div data-role="page" id="apropos">
+            <div data-role="header">
+                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">{{ back_button|default('Retour') }}</a>
+                <h1>{{ help.title|default('A Propos') }}</h1>
+            </div>
+            <div data-role="content">
+                <img src="imgs/oif.png" width="239" height="103" alt="OIF" />
+                <img src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />
+                <img src="imgs/auf.png" width="140" height="100" alt="AUF" />
+                <ul class="people">
+                    <li><span class="name">Papa Youga Dieng</span>
+                        <span class="job">Coordinateur IFADEM-OIF</span></li>
+
+                    <li><span class="name">Rachid El Boussarghini</span>
+                        <span class="job">Expert numérique MINES-MESR</span></li>
+
+                    <li><span class="name">Vincent Bellenger</span>
+                        <span class="job">Université de Bretagne</span></li>
+
+                    <li><span class="name">Jean-Baptiste Yunès</span>
+                        <span class="job">Maître de conférences, Université Paris Diderot</span></li>
+
+                    <li><span class="name">Baptiste Fontaine</span>
+                        <span class="job">Développeur, Université Paris Diderot</span></li>
+                </ul>
+            </div>
+        </div>
 
         <script src="js/app.js"></script>
     </body>

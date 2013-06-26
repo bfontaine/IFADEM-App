@@ -29,4 +29,25 @@ body {
     background-color: #ddd;
 }
 
+img.logo {
+    opacity: .2;
+}
+img.logo.square {
+    display: inline-block;
+}
+
+.people {
+    padding-left: 5px;
+    list-style-type: none;
+}
+.people .name {
+    font-weight: bold;
+    display: block;
+}
+.people .job { font-size: 0.8em; }
+
+.people li + li {
+    margin-top: 10px;
+}
+
 #b_cancel.nodisplay { display: none; }
