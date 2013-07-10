@@ -32,6 +32,9 @@ define('ROOT', 'ifadem-02.bfontaine.net');
  * $langdir directory for a list of available languages. */
 define('LANG', 'fr');
 /*
+ * The timezone of the website. This is used for date/time. */
+define('TIMEZONE', 'Europe/Paris');
+/*
  *
  * The directory for language files (default: ./lang): */
 define('LANG_DIR', __DIR__ . '/lang');

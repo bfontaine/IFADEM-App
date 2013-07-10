@@ -20,7 +20,7 @@ $tpl_engine = new Twig_Environment($loader, array(
     'autoescape'       => true
 ));
 
-$tpl_engine->getExtension('core')->setTimezone('Europe/Paris');
+$tpl_engine->getExtension('core')->setTimezone(TIMEZONE);
 
 // helpers
 foreach (glob(__DIR__ . '/helpers/*.php') as $f) {
