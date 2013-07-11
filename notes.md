@@ -21,9 +21,28 @@ Mardi 18/06, 16h.
 Mercredi 26/06, 10h.
 
 - [x] Ajouter les logos des organisations sur la page principale de l’appli
-- Quand on sélectionne des livrets, mettre la taille totale des fichiers
+- [x] Mettre le champ de pseudo sur une seule ligne
+- [x] Remplir la page « À Propos » avec les noms des gens (cf mail JBY)
+- [x] Remplir la page « Aide »
+- [ ] Filtrer (aussi) sur les tags avec le champ de filtre
+- [ ] Quand on sélectionne des livrets, mettre la taille totale des fichiers
   sélectionnés en haut
-- Filtrer (aussi) sur les tags avec le champ de filtre
-- Mettre le champ de pseudo sur une seule ligne
-- Remplir la page « À Propos » avec les noms des gens (cf mail JBY)
-- Remplir la page « Aide »
+
+
+- [ ] Si l’utilisateur a rentré quelquechose dans le champ de pseudo, faire un
+  appel à `?p=usernames` pour récupérer la liste des pseudos et vérifiez que
+  celui-ci n’est pas déjà pris par quelqu’un d’autre.
+- [ ] Si c’est le cas, afficher « ce pseudo est déjà pris » ou équivalent.
+- [ ] Si ça n’est pas le cas, pré-enregistrer le pseudo auprès du serveur et
+  afficher une confirmation visuelle.
+- [ ] Au chargement de la page, vérifiez en PHP si un pseudo est dans le cookie,
+  et si oui, l’afficher dans le champ
+- [ ] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
+  liste des ids des ressources sélectionnées, et les pré-sélectionner via PHP.
+- [ ] Lors du clic sur le bouton de validation, envoyer la liste des ressources
+  sélectionnées ainsi que le pseudo au server (JS)
+- [ ] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
+- [ ] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
+  afficher l’URL à copier
+- [ ] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
+  ressources, qui mène vers une page qui met en cache les ressources (AppCache)
