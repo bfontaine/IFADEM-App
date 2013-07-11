@@ -39,10 +39,7 @@
             </div>
             <div data-role="content">
 
-                <div data-role="fieldcontain">
-                    <label for="pseudo_inp">Pseudo&nbsp;:</label>
-                    <input type="text" name="pseudo" id="pseudo_inp" value="" data-mini="true" />
-                </div>
+                <input type="text" name="pseudo" id="pseudo_inp" value="" placeholder="pseudo" data-mini="true" />
 
                 <div data-role="collapsible-set" data-inset="false">
                     {% for country in countries %}
@@ -107,7 +104,29 @@
                 <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">{{ back_button|default('Retour') }}</a>
                 <h1>{{ help.title|default('Aide') }}</h1>
             </div>
-            <div data-role="content">TODO</div>
+            <div data-role="content">
+                <h2>1. Choix d’un pseudo</h2>
+                <p>Les ressources que vous sélectionnez sont automatiquement associées à votre pseudo. Ceci
+                   permet de générer un flux de podcast unique quelque soit l’appareil que vous utilisez ou
+                   les ressources que vous sélectionnez.</p>
+                <h2>2. Sélection des ressources</h2>
+                <p>Touchez les noms de pays pour accéder à la liste des ressources correspondante. Vous
+                   pouvez afficher plus d’informations sur une ressource en touchant son image. Touchez
+                   une ressource pour l’ajouter ou la supprimer de votre sélection. Quand vous avez
+                   fini, validez en touchant le bouton en haut à droite. Attention&nbsp;: plus
+                   vous sélectionnez de ressources, plus le téléchargement sera important, donc assurez-vous
+                   de disposer d’une bonne connexion.</p>
+                <h2>3. Flux de podcast</h2>
+                <p>Une fois que vous avez validé votre sélection, l’adresse de votre flux de podcast est
+                   affichée. Copiez-la dans votre application de podcast, qui se chargera ensuite de télécharger
+                   automatiquement les ressources correspondantes. Il n’est nécessaire de copier cette
+                   adresse que la première fois (ou si vous changez de pseudo), l’application de podcast
+                   s’en souviendra pour les fois d’après.</p>
+                <h2>4. Consultation des ressources</h2>
+                <p>Assurez-vous d’être connecté à Internet quand vous sélectionnez de nouvelles ressources, puis
+                   ouvrez votre application de podcast pour les télécharger. Une fois les ressources téléchargées,
+                   vous pouvez les consulter en hors-ligne via votre application de podcast.</p>
+            </div>
         </div>
 
         <div data-role="page" id="apropos">
