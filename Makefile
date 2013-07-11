@@ -7,3 +7,8 @@ tpl/cache:
 
 php-dependencies:
 	composer install
+
+usersdata: usersdata.json
+
+usersdata.json:
+	echo "{}" > $@
