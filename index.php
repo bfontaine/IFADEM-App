@@ -76,6 +76,18 @@ function api($call) {
             'username'  => get_username()
         );
     }
+    if ($call == 'select-ressources') {
+        if (!isset($_POST['username']) || !isset($_POST['ids'])) {
+            return array( 'status' => 'error', 'message' => 'missing parameters.' );
+        }
+
+        $username = trim($_POST['username']);
+        $ids      = explode(',', trim($_POST['ids']));
+
+        if (empty($username) || empty($ids)) { return array( 'status' => 'error' ); }
+
+        return array( 'status' => update_podcasts($username, $ids) ? 'ok' : 'error' );
+    }
 
     return array();
 }

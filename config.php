@@ -7,6 +7,9 @@
  * Current environment. Use 'dev' or 'prod': */
 define('ENV', 'dev');
 /*
+ * The root directory of the app. */
+define('ROOT_DIR', __DIR__);
+/*
  * === Web Services ===
  *
  * The Web services base URL: */
@@ -22,7 +25,11 @@ define('WS_URL', 'https://c2i.education.fr/ifademws/ws.php');
  *
  * then the root is 'example.org/ifadem'. Don't add the trailing slash at the
  * end. */
-define('ROOT', 'ifadem-02.bfontaine.net');
+define('ROOT_URL', 'ifadem-02.bfontaine.net');
+/*
+ *
+ * The base URL for each podcast feed. Note that all directories must exist. */
+define('FEEDS_ROOT', '/p');
 /*
  *
  * === Localisation ===

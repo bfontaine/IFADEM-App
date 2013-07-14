@@ -3,8 +3,67 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "014f748c834de2cca6952a1e2d293c71",
+    "hash": "c48c13051356b3317782d7bfedb98c50",
     "packages": [
+        {
+            "name": "mibe/feedwriter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mibe/FeedWriter.git",
+                "reference": "390a4138bdfb11854a630cb5469b48e82fe65c0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mibe/FeedWriter/zipball/390a4138bdfb11854a630cb5469b48e82fe65c0a",
+                "reference": "390a4138bdfb11854a630cb5469b48e82fe65c0a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "ATOM.php",
+                    "Feed.php",
+                    "Item.php",
+                    "RSS1.php",
+                    "RSS2.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Robinson",
+                    "email": "mike@pagesofinterest.net",
+                    "homepage": "http://pagesofinterest.net/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anis uddin Ahmad"
+                },
+                {
+                    "name": "Michael Bemmerl",
+                    "email": "mail@mx-server.de"
+                },
+                {
+                    "name": "Phil Freo"
+                },
+                {
+                    "name": "Paul Ferrett"
+                },
+                {
+                    "name": "Brennen Bearnes"
+                }
+            ],
+            "description": "Generate feeds in either RSS 1.0, RSS 2.0 or ATOM formats",
+            "homepage": "https://github.com/mibe/FeedWriter",
+            "keywords": [
+                "rss"
+            ],
+            "time": "2013-06-12 23:00:32"
+        },
         {
             "name": "twig/twig",
             "version": "v1.9.0",
@@ -62,9 +121,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "mibe/feedwriter": 20
+    },
     "platform": [
 
     ],

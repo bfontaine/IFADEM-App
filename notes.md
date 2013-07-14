@@ -29,6 +29,8 @@ Mercredi 26/06, 10h.
   sélectionnés en haut
 
 
+- [x] Corriger la taille affichée pour chaque ressources, par ex le premier
+  livret du Bénin fait 311ko, la taille affichée est de 311o.
 - [ ] Si l’utilisateur a rentré quelquechose dans le champ de pseudo, faire un
   appel à `?p=usernames` pour récupérer la liste des pseudos et vérifiez que
   celui-ci n’est pas déjà pris par quelqu’un d’autre.
@@ -40,7 +42,7 @@ Mercredi 26/06, 10h.
 - [ ] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
   liste des ids des ressources sélectionnées, et les pré-sélectionner via PHP.
 - [ ] Lors du clic sur le bouton de validation, envoyer la liste des ressources
-  sélectionnées ainsi que le pseudo au server (JS)
+  sélectionnées ainsi que le pseudo au serveur (JS)
 - [ ] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
 - [ ] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
   afficher l’URL à copier

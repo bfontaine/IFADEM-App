@@ -45,10 +45,16 @@ function get_countries() {
  * thumbnail, country, creation_date, modification_date.
  * The type of each value is not checked.
  **/
-function get_ressources() {
-    $raw_ressources = ws_call('getAllRessources');
+function get_ressources($criteria=null) {
 
+    $args = array();
     $ressources = array();
+
+    if ($criteria) {
+        $args['critere'] = $criteria;
+    }
+
+    $raw_ressources = ws_call('getAllRessources', $args);
 
     foreach ($raw_ressources as $_ => $ressource) {
         $ressources []= array(
@@ -90,6 +96,18 @@ function get_ressources() {
     }
 
     return $ressources;
+}
+
+/**
+ * Find a ressource by its id. See [get_ressources] for the return
+ * value.
+ **/
+function get_ressource($id) {
+    $ress = get_ressources("Reference=$id");
+
+    if ($ress) { return $ress[0]; }
+
+    return null;
 }
 
 /**

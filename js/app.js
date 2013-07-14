@@ -2,12 +2,15 @@ $(function() {
 
     var global_count = 0,
         $body        = $( 'body' ),
+        $b_confirm   = $( '#select-contents' ),
         $b_cancel    = $('#b_cancel'),
 
         $pseudo_input = $( '#pseudo_inp' ),
 
         data_selected_count_attr = 'country-selected-count',
         data_selected_count_sel  = '.selected-count .count';
+
+    if (!window.console) { window.console = {log: $.noop}; }
 
     // show/hide the 'cancel' button which deselect all contents
     function update_cancel_button() {
@@ -84,5 +87,33 @@ $(function() {
 
         });
     }
+
+    // contents' selection
+    $b_confirm.click(function() {
+
+        // get the pseudo
+        var username = '',
+        // get the contents' ids
+            ids = $( '.content.selected' ).map(function(i, e) {
+                    return $(e).data('contentId'); }).toArray();
+
+        $.ajax({
+            method: 'POST',
+            url: '/?p=select-ressources',
+            data: {
+                username: username,
+                ids: ids.join(',')
+            },
+            success: function(data) {
+                // TODO show confirmation pop-up
+            },
+            error: function(e) {
+                // TODO
+                console.log('Error while confirming selection:', e);
+            }
+        });
+
+    });
+    
 
 });
