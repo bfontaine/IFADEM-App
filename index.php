@@ -25,7 +25,7 @@ function main_page() {
             $countries[$country['id']] = $country;
         }
 
-        $size = (int)$r['size'];
+        $size = 1024 * (int)$r['size'];
 
         // MP3s
         $mp3s = get_mp3s($r['id']);
