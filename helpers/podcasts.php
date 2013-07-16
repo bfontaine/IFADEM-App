@@ -30,10 +30,10 @@ function update_podcasts($username, $ids) {
         $item->setDescription($content['description']);
 
         // content's PDF
-        $item->setEnclosure($content['content'], $content['size'], 'application/pdf');
+        $item->addEnclosure($content['content'], $content['size'], 'application/pdf');
 
         foreach ($mp3s as $mp3) {
-            $item->setEnclosure($mp3['url'], $mp3['size'], 'audio/mpeg');
+            $item->addEnclosure($mp3['url'], $mp3['size'], 'audio/mpeg');
         }
 
         $item->addElement('guid', $content['id'], array('isPermaLink' => 'false'));

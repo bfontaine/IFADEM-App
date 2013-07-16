@@ -1,6 +1,12 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/bfontaine/FeedWriter"
+        }
+    ],
     "require": {
         "twig/twig": "1.9.0",
-        "mibe/feedwriter": "dev-master"
+        "mibe/feedwriter": "dev-multiple-enclosures"
     }
 }
