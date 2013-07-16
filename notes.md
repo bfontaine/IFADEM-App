@@ -41,10 +41,10 @@ Mercredi 26/06, 10h.
   et si oui, l’afficher dans le champ
 - [ ] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
   liste des ids des ressources sélectionnées, et les pré-sélectionner via PHP.
-- [ ] Lors du clic sur le bouton de validation, envoyer la liste des ressources
+- [x] Lors du clic sur le bouton de validation, envoyer la liste des ressources
   sélectionnées ainsi que le pseudo au serveur (JS)
-- [ ] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
-- [ ] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
+- [x] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
+- [~] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
   afficher l’URL à copier
 - [ ] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
   ressources, qui mène vers une page qui met en cache les ressources (AppCache)

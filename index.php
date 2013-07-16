@@ -50,7 +50,7 @@ function main_page() {
 }
 
 function json($data) {
-    header('Content-Type: text/javascript; charset=utf-8');
+    header('Content-Type: application/json; charset=utf-8');
     return json_encode($data);
 }
 

@@ -29,7 +29,7 @@ define('ROOT_URL', 'ifadem-02.bfontaine.net');
 /*
  *
  * The base URL for each podcast feed. Note that all directories must exist. */
-define('FEEDS_ROOT', '/p');
+define('FEEDS_ROOT', 'p');
 /*
  *
  * === Localisation ===

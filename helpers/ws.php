@@ -56,6 +56,8 @@ function get_ressources($criteria=null) {
 
     $raw_ressources = ws_call('getAllRessources', $args);
 
+    if (!$raw_ressources) { return $ressource; }
+
     foreach ($raw_ressources as $_ => $ressource) {
         $ressources []= array(
 

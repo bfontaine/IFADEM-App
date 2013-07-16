@@ -123,9 +123,9 @@ $(function() {
 
                 prompt('ok', data.url);
             },
-            error: function(e) {
-                // TODO
-                console.log('Error while confirming selection:', e);
+            error: function() {
+                console.log("selection AJAX error:");
+                console.log([].slice.call(arguments));
             }
         });
 

@@ -41,6 +41,7 @@ function update_podcasts($username, $ids) {
         $feed->addItem($item);
     }
 
-    return file_put_contents(ROOT_DIR . $subpath, $feed->generateFeed()) !== FALSE;
+    return file_put_contents(
+        ROOT_DIR . $subpath, utf8_decode($feed->generateFeed())) !== FALSE;
 }
 
