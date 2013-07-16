@@ -1,8 +1,12 @@
 <?php
 
+function podcasts_feed_url($username, $root=true) {
+    return ($root ? ROOT_URL : '') . '/' . FEEDS_ROOT . "/$username.rss";
+}
+
 function update_podcasts($username, $ids) {
 
-    $subpath = '/' . FEEDS_ROOT . "/$username.rss";
+    $subpath = podcasts_feed_url($username, false);
 
     $feed = new \FeedWriter\RSS2();
     $feed->setTitle("Ressources IFADEM");
@@ -22,7 +26,7 @@ function update_podcasts($username, $ids) {
 
         $item->setTitle($content['title']);
         $item->setLink(ROOT_URL . "/?id=$id"); // not a real URL
-        $item->setDate($content['modification_date']);
+        $item->setDate((int)$content['modification_date']);
         $item->setDescription($content['description']);
 
         // content's PDF

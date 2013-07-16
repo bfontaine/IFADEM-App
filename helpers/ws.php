@@ -127,9 +127,10 @@ function get_mp3s($id=null) {
 
     foreach ($raw_mp3s as $mp3) {
         $url = $mp3['Entree_Identifiant'];
+        $len = strlen($url);
 
         // skip ZIP files
-        if (strripos($url, '.zip', -4) === -4) { continue; }
+        if (strripos($url, '.zip', $len - 4) !== FALSE) { continue; }
 
         $mp3s []= array(
             'id'           => $mp3['id'],

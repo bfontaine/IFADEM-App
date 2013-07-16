@@ -8,7 +8,12 @@ tpl/cache:
 php-dependencies:
 	composer install
 
-usersdata: usersdata.json
+usersdata: usersdata.json p
 
 usersdata.json:
 	echo "{}" > $@
+
+# directory which contains *.rss podcast feeds
+p:
+	mkdir $@
+	chmod o+w $@

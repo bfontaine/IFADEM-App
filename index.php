@@ -86,7 +86,10 @@ function api($call) {
 
         if (empty($username) || empty($ids)) { return array( 'status' => 'error' ); }
 
-        return array( 'status' => update_podcasts($username, $ids) ? 'ok' : 'error' );
+        return array(
+            'status' => update_podcasts($username, $ids) ? 'ok' : 'error',
+            'url'    => podcasts_feed_url($username)
+         );
     }
 
     return array();

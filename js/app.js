@@ -5,10 +5,17 @@ $(function() {
         $b_confirm   = $( '#select-contents' ),
         $b_cancel    = $('#b_cancel'),
 
-        $pseudo_input = $( '#pseudo_inp' ),
+        $username_input = $( '#pseudo_inp' ),
 
         data_selected_count_attr = 'country-selected-count',
-        data_selected_count_sel  = '.selected-count .count';
+        data_selected_count_sel  = '.selected-count .count',
+
+        // not sure if String#trim is supported by all browsers
+        trim = (function() {
+            var trailing_spaces = /^\s+|\s+$/g;
+            return function(s) { return s.replace(trailing_spaces, ''); };
+        })();
+
 
     if (!window.console) { window.console = {log: $.noop}; }
 
@@ -75,15 +82,15 @@ $(function() {
     });
 
 
-    // trying to fill the 'pseudo' input
+    // trying to fill the 'username' input
     if (window.localStorage) {
-        var p = localStorage.getItem( 'pseudo' );
+        var p = localStorage.getItem( 'username' );
 
-        if (p && !$pseudo_input.val()) { $pseudo_input.val(p); }
+        if (p && !$username_input.val()) { $username_input.val(p); }
 
-        $pseudo_input.on( 'change', function() {
+        $username_input.on( 'change', function() {
 
-            localStorage.setItem( 'pseudo', $pseudo_input.val() );
+            localStorage.setItem( 'username', $username_input.val() );
 
         });
     }
@@ -91,8 +98,8 @@ $(function() {
     // contents' selection
     $b_confirm.click(function() {
 
-        // get the pseudo
-        var username = '',
+        // get the username
+        var username = trim($username_input.val()),
         // get the contents' ids
             ids = $( '.content.selected' ).map(function(i, e) {
                     return $(e).data('contentId'); }).toArray();
@@ -105,7 +112,16 @@ $(function() {
                 ids: ids.join(',')
             },
             success: function(data) {
-                // TODO show confirmation pop-up
+
+                // tmp code, for testing purposes
+
+                if (data.status !== 'ok') {
+                    console.log(data);
+                    alert('error!');
+                    return;
+                }
+
+                prompt('ok', data.url);
             },
             error: function(e) {
                 // TODO

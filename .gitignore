@@ -4,3 +4,4 @@
 *.swo
 /vendor
 /tpl/cache
+/p/*
