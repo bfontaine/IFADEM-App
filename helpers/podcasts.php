@@ -30,7 +30,9 @@ function update_podcasts($username, $ids) {
         $item->setDescription($content['description']);
 
         // content's PDF
-        $item->addEnclosure($content['content'], $content['size'], 'application/pdf');
+        if ($content['content']) {
+            $item->addEnclosure($content['content'], $content['size'], 'application/pdf');
+        }
 
         foreach ($mp3s as $mp3) {
             $item->addEnclosure($mp3['url'], $mp3['size'], 'audio/mpeg');
