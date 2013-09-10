@@ -26,16 +26,24 @@ body {
     background-color: #ddd;
 }
 
-img.logo {
-    opacity: .25;
-}
 img.logo.square {
     display: inline-block;
 }
-img[alt="OIF"], img[alt="AUF"] {
+.ui-content img.logo {
+    opacity: .25;
+}
+.ui-content img.logo[alt="OIF"],
+.ui-content img.logo[alt="AUF"] {
     max-height: 80px;
     width: auto;
     opacity: .16;
+}
+h1 img.square {
+    height: 16px;
+    width: 16px;
+    position: relative;
+    top: 2px;
+    margin-right: 6px;
 }
 
 .people {
