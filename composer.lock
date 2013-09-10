@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c282ad4a3146fdf20670d54ad6d3c2bd",
+    "hash": "c48c13051356b3317782d7bfedb98c50",
     "packages": [
         {
             "name": "mibe/feedwriter",
-            "version": "dev-multiple-enclosures",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bfontaine/FeedWriter.git",
-                "reference": "4ce86fb958bf77c3a8bc08bd6ee35bac46ba8330"
+                "url": "https://github.com/mibe/FeedWriter.git",
+                "reference": "ad25133c696fdb6c294ec22c15e958ab25152759"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bfontaine/FeedWriter/zipball/4ce86fb958bf77c3a8bc08bd6ee35bac46ba8330",
-                "reference": "4ce86fb958bf77c3a8bc08bd6ee35bac46ba8330",
+                "url": "https://api.github.com/repos/mibe/FeedWriter/zipball/ad25133c696fdb6c294ec22c15e958ab25152759",
+                "reference": "ad25133c696fdb6c294ec22c15e958ab25152759",
                 "shasum": ""
             },
             "type": "library",
@@ -29,10 +29,17 @@
                     "RSS2.php"
                 ]
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0"
             ],
             "authors": [
+                {
+                    "name": "Michael Robinson",
+                    "email": "mike@pagesofinterest.net",
+                    "homepage": "http://pagesofinterest.net/",
+                    "role": "Developer"
+                },
                 {
                     "name": "Anis uddin Ahmad"
                 },
@@ -48,34 +55,27 @@
                 },
                 {
                     "name": "Brennen Bearnes"
-                },
-                {
-                    "name": "Michael Robinson",
-                    "email": "mike@pagesofinterest.net"
                 }
             ],
             "description": "Generate feeds in either RSS 1.0, RSS 2.0 or ATOM formats",
             "homepage": "https://github.com/mibe/FeedWriter",
             "keywords": [
-                "RSS"
+                "rss"
             ],
-            "support": {
-                "source": "https://github.com/bfontaine/FeedWriter/tree/multiple-enclosures"
-            },
-            "time": "2013-07-16 20:50:55"
+            "time": "2013-07-16 23:09:19"
         },
         {
             "name": "twig/twig",
             "version": "v1.9.0",
             "source": {
                 "type": "git",
-                "url": "git://github.com/fabpot/Twig.git",
-                "reference": "v1.9.0"
+                "url": "https://github.com/fabpot/Twig.git",
+                "reference": "31f05925258063a363178691be6988bde78ab5fb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/zipball/v1.9.0",
-                "reference": "v1.9.0",
+                "url": "https://api.github.com/repos/fabpot/Twig/zipball/31f05925258063a363178691be6988bde78ab5fb",
+                "reference": "31f05925258063a363178691be6988bde78ab5fb",
                 "shasum": ""
             },
             "require": {
@@ -111,7 +111,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2012-07-13 09:26:34"
+            "time": "2012-07-13 16:26:34"
         }
     ],
     "packages-dev": [
