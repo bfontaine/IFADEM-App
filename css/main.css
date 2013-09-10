@@ -21,19 +21,21 @@ body {
     right: 6px;
 
     -webkit-border-radius: 15px;
-       -moz-border-radius: 15px;
-        -ms-border-radius: 15px;
-         -o-border-radius: 15px;
             border-radius: 15px;
     
     background-color: #ddd;
 }
 
 img.logo {
-    opacity: .2;
+    opacity: .25;
 }
 img.logo.square {
     display: inline-block;
+}
+img[alt="OIF"], img[alt="AUF"] {
+    max-height: 80px;
+    width: auto;
+    opacity: .16;
 }
 
 .people {
