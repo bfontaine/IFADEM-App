@@ -15,6 +15,8 @@ function update_podcasts($username, $ids) {
     $feed->setChannelElement('pubDate', date(DATE_RSS, time()));
     $feed->setChannelElement('language', 'fr');
 
+    $feed->setEncoding('iso8859-1');
+
     foreach ($ids as $_ => $id) {
 
         $content = get_ressource($id);

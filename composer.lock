@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "c48c13051356b3317782d7bfedb98c50",
+    "hash": "a551ab532e5e40715da30a7506f0fa80",
     "packages": [
         {
             "name": "mibe/feedwriter",
-            "version": "dev-master",
+            "version": "dev-encoding",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mibe/FeedWriter.git",
-                "reference": "ad25133c696fdb6c294ec22c15e958ab25152759"
+                "url": "https://github.com/bfontaine/FeedWriter.git",
+                "reference": "3c34fca97bd334b9d5d39337c1825b90f632a5bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mibe/FeedWriter/zipball/ad25133c696fdb6c294ec22c15e958ab25152759",
-                "reference": "ad25133c696fdb6c294ec22c15e958ab25152759",
+                "url": "https://api.github.com/repos/bfontaine/FeedWriter/zipball/3c34fca97bd334b9d5d39337c1825b90f632a5bf",
+                "reference": "3c34fca97bd334b9d5d39337c1825b90f632a5bf",
                 "shasum": ""
             },
             "type": "library",
@@ -29,17 +29,10 @@
                     "RSS2.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0"
             ],
             "authors": [
-                {
-                    "name": "Michael Robinson",
-                    "email": "mike@pagesofinterest.net",
-                    "homepage": "http://pagesofinterest.net/",
-                    "role": "Developer"
-                },
                 {
                     "name": "Anis uddin Ahmad"
                 },
@@ -55,14 +48,21 @@
                 },
                 {
                     "name": "Brennen Bearnes"
+                },
+                {
+                    "name": "Michael Robinson",
+                    "email": "mike@pagesofinterest.net"
                 }
             ],
             "description": "Generate feeds in either RSS 1.0, RSS 2.0 or ATOM formats",
             "homepage": "https://github.com/mibe/FeedWriter",
             "keywords": [
-                "rss"
+                "RSS"
             ],
-            "time": "2013-07-16 23:09:19"
+            "support": {
+                "source": "https://github.com/bfontaine/FeedWriter/tree/encoding"
+            },
+            "time": "2013-09-13 13:11:56"
         },
         {
             "name": "twig/twig",
