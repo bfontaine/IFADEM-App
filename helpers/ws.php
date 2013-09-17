@@ -138,7 +138,8 @@ function get_mp3s($id=null) {
             'id'           => $mp3['id'],
             'ressource_id' => $mp3['Reference'],
             'url'          => $url,
-            'size'         => (double)$mp3['Taille']
+            'size'         => (double)$mp3['Taille'],
+            'title'        => $mp3['titre_mp3_ws']
         );
     }
 
