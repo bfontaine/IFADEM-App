@@ -31,16 +31,6 @@ Mercredi 26/06, 10h.
 
 - [x] Corriger la taille affichée pour chaque ressources, par ex le premier
   livret du Bénin fait 311ko, la taille affichée est de 311o.
-- [ ] Si l’utilisateur a rentré quelquechose dans le champ de pseudo, faire un
-  appel à `?p=usernames` pour récupérer la liste des pseudos et vérifiez que
-  celui-ci n’est pas déjà pris par quelqu’un d’autre.
-- [ ] Si c’est le cas, afficher « ce pseudo est déjà pris » ou équivalent.
-- [ ] Si ça n’est pas le cas, pré-enregistrer le pseudo auprès du serveur et
-  afficher une confirmation visuelle.
-- [ ] Au chargement de la page, vérifiez en PHP si un pseudo est dans le cookie,
-  et si oui, l’afficher dans le champ
-- [ ] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
-  liste des ids des ressources sélectionnées, et les pré-sélectionner via PHP.
 - [x] Lors du clic sur le bouton de validation, envoyer la liste des ressources
   sélectionnées ainsi que le pseudo au serveur (JS)
 - [x] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
@@ -48,6 +38,18 @@ Mercredi 26/06, 10h.
   afficher l’URL à copier
 - [ ] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
   ressources, qui mène vers une page qui met en cache les ressources (AppCache)
+- [ ] Si l’utilisateur a rentré quelquechose dans le champ de pseudo, faire un
+  appel à `?p=usernames` pour récupérer la liste des pseudos et vérifiez que
+  celui-ci n’est pas déjà pris par quelqu’un d’autre.
+- [ ] Si c’est le cas, afficher « ce pseudo est déjà pris, êtes-vous sûr que
+  c’est bien le vôtre » ou équivalent.
+- [ ] Si ça n’est pas le cas, pré-enregistrer le pseudo auprès du serveur et
+  afficher une confirmation visuelle.
+- [ ] Au chargement de la page, vérifiez en PHP si un pseudo est dans le cookie,
+  et si oui, l’afficher dans le champ
+- [ ] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
+  liste des ids des ressources sélectionnées, et les pré-sélectionner via PHP
+  (ou appel d’API).
 
 Mardi 17/09:
 
