@@ -1,5 +1,9 @@
 <?php
 
+require __DIR__.'/../lib/mibe/feedwriter/Item.php';
+require __DIR__.'/../lib/mibe/feedwriter/Feed.php';
+require __DIR__.'/../lib/mibe/feedwriter/RSS2.php';
+
 function podcasts_feed_url($username, $root=true) {
     return ($root ? ROOT_URL : '') . '/' . FEEDS_ROOT . "/$username.rss";
 }

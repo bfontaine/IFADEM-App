@@ -48,3 +48,15 @@ Mercredi 26/06, 10h.
   afficher l’URL à copier
 - [ ] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
   ressources, qui mène vers une page qui met en cache les ressources (AppCache)
+
+Mardi 17/09:
+
+- [ ] Quand l’utilisateur entre un pseudo en haut, charger les contenus qu’il a
+  déjà sélectionné (afficher X/5, etc)
+- [ ] Deux pages, une de sélection, une pour voir les contenus en cache, + une
+  première page pour choisir entre les deux en fonction du mode online/offline.
+- [ ] Sur la page des docs en cache, ajouter un indicateur de progression clair.
+- [ ] Après validation des contenus, page intermédiaire pour choisir entre
+  l’utilisation de AppCache et de l’appli Android.
+- [ ] Sélection du pseudo dans la première page.
+

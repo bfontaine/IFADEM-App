@@ -30,13 +30,12 @@ img.logo.square {
     display: inline-block;
 }
 .ui-content img.logo {
-    opacity: .25;
+    opacity: .5;
 }
 .ui-content img.logo[alt="OIF"],
 .ui-content img.logo[alt="AUF"] {
-    max-height: 80px;
+    max-height: 70px;
     width: auto;
-    opacity: .16;
 }
 h1 img.square {
     height: 16px;
