@@ -41,7 +41,9 @@ function update_podcasts($username, $ids) {
         }
 
         foreach ($mp3s as $mp3) {
-            $item->addEnclosure($mp3['url'], $mp3['size'], 'audio/mpeg');
+            $item->addEnclosure($mp3['url'], $mp3['size'], 'audio/mpeg', TRUE, array(
+                'ifadem:title' => $mp3['title']
+            ));
         }
 
         $item->addElement('guid', $content['id'], array('isPermaLink' => 'false'));
