@@ -37,7 +37,9 @@ function update_podcasts($username, $ids) {
 
         // content's PDF
         if ($content['content']) {
-            $item->addEnclosure($content['content'], $content['size'], 'application/pdf');
+            $item->addEnclosure($content['content'], $content['size'], 'application/pdf', TRUE, array(
+                'ifadem:title' => $content['title']
+            ));
         }
 
         foreach ($mp3s as $mp3) {
