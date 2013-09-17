@@ -19,7 +19,7 @@ function update_podcasts($username, $ids) {
     $feed->setChannelElement('pubDate', date(DATE_RSS, time()));
     $feed->setChannelElement('language', 'fr');
 
-    $feed->setEncoding('iso8859-1');
+    $feed->setEncoding('utf-8');
 
     foreach ($ids as $_ => $id) {
 
@@ -49,7 +49,7 @@ function update_podcasts($username, $ids) {
         $feed->addItem($item);
     }
 
-    $str = utf8_decode($feed->generateFeed());
+    $str = $feed->generateFeed();
 
     return file_put_contents(ROOT_DIR . $subpath, $str) !== FALSE;
 }
