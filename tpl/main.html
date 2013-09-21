@@ -18,23 +18,53 @@
         <link rel="apple-touch-icon-precomposed" href="imgs/ifadem-logo.png" />
     </head>
     <body>
-        {#
-        <script type="data/json" id="json-countries">{{ countries|json_encode()|raw }}</script>
-        #}
+        {##
+         # Landing page
+         # ----------------
+         #
+         # This is where the user goes each time they use the app. It let them
+         # choose their username, and then either select resources (if they have
+         # an Internet connection), see the cached resources, or copy their RSS
+         # feed URL for use in the Android app.
+         #
+         ##}
+        <div data-role="page" id="landingpage">
+            {% include "header.html" %}
+            <div data-role="content">
+                <form class="inline">
+                    <input type="text" placeholder="Choisissez un pseudo..." id="user-id" value="{{ user.id }}" />
+                    <input type="submit" value="OK" />
+                </form>
 
-        <div data-role="page" id="home">
+                <a data-role="button" href="#selection-page" >Sélectionner les ressources</a>
+                <a data-role="button" href="#viewcached-page">Voir les ressources disponibles</a>
+
+                <input type="url" id="rss-feed" value="{{ user.rss_url }}" />
+            </div>
+        </div>
+
+        {##
+         # Selection page
+         # ------------------
+         #
+         # This is the page where the user can see what resources are available,
+         # and choose those they want to have in their RSS feed and/or cached in
+         # their local cache.
+         # 
+         ##}
+        <div data-role="page" id="selection-page">
             <div data-role="header">
 
                 <a href="#cancelling-confirmation" data-role="button" data-rel="popup"
                                                    data-icon="delete" data-iconpos="notext"
-                                                   id="b_cancel" class="nodisplay">{{ buttons.cancel|default('Annuler') }}</a>
+                                                   id="b_cancel" class="nodisplay">Annuler</a>
 
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />{{ title|default('IFADEM') }}</h1>
 
                 <a href="#" data-role="button"
                             data-icon="check"
                             data-iconpos="notext"
-                            id="select-contents">{{ buttons.check|default('OK') }}</a>
+                            id="select-contents">OK</a>
 
             </div>
             <div data-role="content">
@@ -46,7 +76,7 @@
                     <div data-role="collapsible">
                         <h2>{{ country.name }}<span class="selected-count"><span class="count">{{ country.selected_count }}</span>/{{ country.contents|length|default('0') }}</span></h2>
                         <ul data-role="listview" data-filter="true"
-                                                 data-filter-placeholder="{{ filter.placeholder|default('Filtrer les ressources…') }}">
+                                                 data-filter-placeholder="Filtrer les ressources...">
                             {% for content in country.contents %}
                             <li data-content-id="{{ content.id }}" class="content{% if content.selected %} selected{% endif %}">
                                 <img src="{{ content.thumbnail }}" class="content-thumbnail" />
@@ -61,15 +91,15 @@
                 </div>
                 <div>
                     <img class="logo" src="imgs/oif.png" width="239" height="103" alt="OIF" />
-                <!--<img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />-->
+                 {# <img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" /> #}
                     <img class="logo square" src="imgs/auf.png" width="140" height="100" alt="AUF" />
                 </div>
                 <a href="#help"    data-inline="true" data-role="button"
                                    data-mini="true"
-                                   data-icon="info" data-iconpos="left">{{ buttons.help|default('Aide') }}</a>
+                                   data-icon="info" data-iconpos="left">Aide</a>
                 <a href="#apropos" data-inline="true" data-role="button"
                                    data-mini="true"
-                                   data-icon="info" data-iconpos="left">{{ buttons.apropos|default('À Propos') }}</a>
+                                   data-icon="info" data-iconpos="left">À Propos</a>
             </div>
 
             {% for country in countries %}
@@ -99,10 +129,28 @@
             </div>
         </div>
 
+        {##
+         # 'View cached' page
+         # ------------------
+         #
+         # TODO
+         #
+         ##}
+        <div data-role="page" id="viewcached-page">
+            {% include "header.html" %}
+        </div>
+
+        {##
+         # Help page
+         # ---------
+         #
+         # Text-only page (no dynamic elements).
+         #
+         ##}
         <div data-role="page" id="help">
             <div data-role="header">
-                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">{{ back_button|default('Retour') }}</a>
-                <h1>{{ help.title|default('Aide') }}</h1>
+                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
+                <h1>Aide</h1>
             </div>
             <div data-role="content">
                 <h2>1. Choix d’un pseudo</h2>
@@ -129,10 +177,17 @@
             </div>
         </div>
 
+        {##
+         # 'About' page
+         # ----------------
+         #
+         # Text-only page (no dynamic elements).
+         #
+         ##}
         <div data-role="page" id="apropos">
             <div data-role="header">
-                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">{{ back_button|default('Retour') }}</a>
-                <h1>{{ help.title|default('À Propos') }}</h1>
+                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
+                <h1>À Propos</h1>
             </div>
             <div data-role="content">
                 <img src="imgs/oif.png" width="239" height="103" alt="OIF" />
@@ -157,6 +212,11 @@
             </div>
         </div>
 
+        <script>
+        var user = {{ user|json_encode|raw }};
+        </script>
+
+        <script src="js/utils.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-
 require __DIR__.'/../lib/mibe/feedwriter/Item.php';
 require __DIR__.'/../lib/mibe/feedwriter/Feed.php';
 require __DIR__.'/../lib/mibe/feedwriter/RSS2.php';

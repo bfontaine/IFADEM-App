@@ -1,5 +1,11 @@
 $(function() {
 
+    var _utils = utils(),
+        user  = _utils.user;
+    
+
+    // ========= OLD CODE ======================== //
+
     var global_count = 0,
         $body        = $( 'body' ),
         $b_confirm   = $( '#select-contents' ),
@@ -81,19 +87,7 @@ $(function() {
 
     });
 
-
-    // trying to fill the 'username' input
-    if (window.localStorage) {
-        var p = localStorage.getItem( 'username' );
-
-        if (p && !$username_input.val()) { $username_input.val(p); }
-
-        $username_input.on( 'change', function() {
-
-            localStorage.setItem( 'username', $username_input.val() );
-
-        });
-    }
+    user.listenForName($username_input);
 
     // contents' selection
     $b_confirm.click(function() {

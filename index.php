@@ -10,6 +10,8 @@
 require_once __DIR__ . '/initialization.php';
 
 function main_page() {
+    $user = get_user();
+    $id   = $user ? $user->id() : '';
 
     $ressources = get_ressources();
 
@@ -44,6 +46,10 @@ function main_page() {
     }
 
     return tpl_render('main.html', array(
+        'user' => array(
+            'id'      => $id,
+            'rss_url' => $id ? podcasts_feed_url($id) : ''
+        ),
         'countries' => $countries
     ));
 
