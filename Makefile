@@ -14,6 +14,7 @@ usersdata.json:
 	echo "{}" > $@
 
 # directory which contains *.rss podcast feeds
+# it may be changed using config.php
 p:
 	mkdir $@
 	chmod o+w $@
