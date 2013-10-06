@@ -1,7 +1,6 @@
 $(function() {
 
-    var _utils = utils(),
-        user  = _utils.user;
+    var user  = window.user || {};
     
 
     // ========= OLD CODE ======================== //
@@ -86,8 +85,6 @@ $(function() {
         });
 
     });
-
-    user.listenForName($username_input);
 
     // contents' selection
     $b_confirm.click(function() {

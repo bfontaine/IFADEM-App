@@ -29,17 +29,17 @@
          #
          ##}
         <div data-role="page" id="landingpage">
-            {% include "header.html" %}
+            <div data-role="header">
+               <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />{{ title|default('IFADEM') }}</h1>
+            </div>
             <div data-role="content">
-                <form class="inline">
+                <form class="inline" id="user-id-form">
                     <input type="text" placeholder="Choisissez un pseudo..." id="user-id" value="{{ user.id }}" />
-                    <input type="submit" value="OK" />
                 </form>
 
-                <a data-role="button" href="#selection-page" >Sélectionner les ressources</a>
-                <a data-role="button" href="#viewcached-page">Voir les ressources disponibles</a>
-
-                <input type="url" id="rss-feed" value="{{ user.rss_url }}" />
+                <a data-role="button" href="#selection-page" >{% if not has_selected_resources %}Sélectionner des ressources</a>
+                                                              {% else %}Changer les ressources sélectionnées</a>
+                <a data-role="button" href="#view-resources-page">Voir les ressources disponibles</a>{% endif %}
             </div>
         </div>
 
@@ -69,12 +69,10 @@
             </div>
             <div data-role="content">
 
-                <input type="text" name="pseudo" id="pseudo_inp" value="" placeholder="pseudo" data-mini="true" />
-
                 <div data-role="collapsible-set" data-inset="false">
                     {% for country in countries %}
                     <div data-role="collapsible">
-                        <h2>{{ country.name }}<span class="selected-count"><span class="count">{{ country.selected_count }}</span>/{{ country.contents|length|default('0') }}</span></h2>
+                        <h2>{{ country.name }}<span class="selected-count"><span class="count">{{ country.selected_count|default('0') }}</span>/{{ country.contents|length|default('0') }}</span></h2>
                         <ul data-role="listview" data-filter="true"
                                                  data-filter-placeholder="Filtrer les ressources...">
                             {% for content in country.contents %}
@@ -102,6 +100,9 @@
                                    data-icon="info" data-iconpos="left">À Propos</a>
             </div>
 
+            {##
+             # These are the popups for each content.
+             ##}
             {% for country in countries %}
                 {% for content in country.contents %}
             <div data-role="popup" id="content-details-{{ content.id }}">
@@ -120,12 +121,39 @@
                 {% endfor %}
             {% endfor %}
 
+            {##
+             # Selection cancelling pop-up
+             ##}
             <div data-role="popup" id="cancelling-confirmation">
                 <p>Êtes-vous sûr de vouloir annuler toute la sélection&nbsp;?
                    Cette action est irréversible, et désélectionnera
                    toutes les ressources actuellement sélectionnées.</p>
                 <a href="#home" data-role="button" data-rel="back">Non</a>
                 <a href="#home" data-role="button" data-rel="back" data-mini="true" id="confirm-cancelling">Oui</a>
+            </div>
+        </div>
+
+        {##
+         # 'View resources' intermediate page
+         # ----------------------------------
+         #
+         # This is the page the user sees if they select 'view resources' on
+         # the landing page. This let them choose between the RSS feed or the
+         # AppCache view.
+         #
+         ##}
+        <div data-role="page" id="view-resources-page">
+            <div data-role="header">
+                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
+               <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources disponibles</h1>
+            </div>
+            <div data-role="content">
+                <p>Vous pouvez voir vos ressources disponibles via l'application RSS (recommandé), ou via
+                   le cache (expérimental). Lors de la première utilisation, copiez/collez l'adresse
+                   suivante dans l'application RSS<!-- TODO see if it's possible to open the app from the
+                   web instead of copy/pasting URLs -->&nbsp;:</p>
+                <input type="text" id="rss-feed-url" value="{{ user.rss_url }}" />
+                <a href="#viewcached-page" data-role="button" data-iconpos="left">Voir les ressources en cache</a>
             </div>
         </div>
 
@@ -137,7 +165,13 @@
          #
          ##}
         <div data-role="page" id="viewcached-page">
-            {% include "header.html" %}
+            <div data-role="header">
+                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
+               <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources en cache</h1>
+            </div>
+            <div data-role="content">
+                <p>Il n'y a aucune ressource disponible en cache pour le moment.</p>
+            </div>
         </div>
 
         {##
@@ -216,7 +250,6 @@
         var user = {{ user|json_encode|raw }};
         </script>
 
-        <script src="js/utils.js"></script>
         <script src="js/app.js"></script>
     </body>
 </html>
