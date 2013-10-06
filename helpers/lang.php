@@ -1,4 +1,7 @@
 <?php
+/**
+ * This file contains some convenient functions to handle i18n.
+ **/
 
 $l10n_strings = array();
 require_once LANG_DIR . '/' . strtolower(LANG) . '.php';

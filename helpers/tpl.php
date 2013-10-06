@@ -1,6 +1,7 @@
 <?php
-
-/** Templates helpers */
+/**
+ * Templates helpers
+ **/
 
 /**
  * Merge default templates values with the given
@@ -37,5 +38,4 @@ function tpl_size($s) {
     }
 
     return ''.$s . ' ' . $units[$unit_index];
-
 }

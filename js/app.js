@@ -1,7 +1,11 @@
 $(function() {
 
-    var user  = window.user || {};
+    var api_calls = {
+        username: '/?api=register-username',
+        resources: '/?select-resources'
+    };
     
+    // TODO
 
     // ========= OLD CODE ======================== //
 
@@ -97,7 +101,7 @@ $(function() {
 
         $.ajax({
             method: 'POST',
-            url: '/?p=select-ressources',
+            url: '/?p=select-resources',
             data: {
                 username: username,
                 ids: ids.join(',')

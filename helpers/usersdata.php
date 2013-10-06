@@ -1,6 +1,21 @@
 <?php
 /**
- * Users' data helper
+ * Users' data helpers
+ *
+ * Data is stored in a JSON file. Each user has an unique entry identified
+ * by their id, e.g.:
+ *      {
+ *        "foo": {
+ *          "resources": {
+ *             "1": true,
+ *             "5": true,
+ *            "42": true
+ *          }
+ *        },
+ *        "bar": {
+ *          "resources": {}
+ *        }
+ *      }
  **/
 
 // cache for users' data
@@ -11,13 +26,16 @@ class User {
     private $resources;
     private $loaded = false;
 
-    public function __construct($id) {
+    public function __construct($id=null) {
         $this->id($id);
     }
 
     private function loadResources() {
-        if ($loaded) { return; }
-        $loaded = true;
+        if ($this->id() == null) {
+            return $this;
+        }
+        if ($this->loaded) { return; }
+        $this->loaded = true;
         
         $data = load_user_data($this->id());
         $this->resources = $data['resources'];
@@ -37,12 +55,17 @@ class User {
     public function resources($res=null) {
         if ($res) {
             $this->resources = $res;
-            $loaded = true;
+            $this->loaded = true;
             return $this;
         }
 
         if (!$this->loaded) { $this->loadResources(); }
         return $this->resources;
+    }
+
+    // get RSS feed URL
+    public function rss($root=true) {
+        return podcasts_feed_url($this->id(), $root);
     }
 
     /**
@@ -51,9 +74,17 @@ class User {
     public function save() {
         save_user_data(array(
             'id'        => $this->id(),
-            'resources' => $this->resources()
+            'resources' => $this->resources(),
+            'rss'       => $this->rss()
         ));
         return $this;
+    }
+
+    public function toArray() {
+        return array(
+            'id' => $this->id(),
+            'resources' => $this->resources()
+        );
     }
 
     public function __toString() {
@@ -66,7 +97,7 @@ class User {
  * settings file. This is an associative array with the following
  * keys:
  *
- * - ressources: an array of ids of the ressources this user has
+ * - resources: an array of ids of the resources this user has
  *   selected. May be empty.
  **/
 function load_user_data($userid=null) {
@@ -105,15 +136,27 @@ function save_user_data($userdata) {
 
 }
 
-function get_user() {
-    if (isset($_SESSION['user'])) {
-        return $_SESSION['user'];
+// generate a random username
+function random_username() {
+    return 'user' . mt_rand(100, 99999);
+}
+
+function user() {
+    $u = null;
+
+    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+        $u = $_SESSION['user'];
     }
 
-    if (isset($_COOKIE) && isset($_COOKIE['username'])) {
-        return $_SESSION['user'] = new User($_COOKIE['username']);
+    else if (isset($_COOKIE) && isset($_COOKIE['username'])) {
+        $u = new User($_COOKIE['username']);
     }
 
-    return null;
+    else { $u = new User(random_username()); }
+
+    $_SESSION['user'] = $u;
+    setcookie('username', $u->id(), time() + 2592000); // 1 month
+
+    return $u;
 }
 

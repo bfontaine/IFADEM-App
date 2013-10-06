@@ -1,9 +1,14 @@
 <?php
+/**
+ * This file contains some helpers for podcasts feed generation
+ **/
+
 require __DIR__.'/../lib/mibe/feedwriter/Item.php';
 require __DIR__.'/../lib/mibe/feedwriter/Feed.php';
 require __DIR__.'/../lib/mibe/feedwriter/RSS2.php';
 
-function podcasts_feed_url($username, $root=true) {
+function podcasts_feed_url($username=null, $root=true) {
+    if ($username === null) { $username = user()->id(); }
     return ($root ? ROOT_URL : '') . '/' . FEEDS_ROOT . "/$username.rss";
 }
 
@@ -22,7 +27,7 @@ function update_podcasts($username, $ids) {
 
     foreach ($ids as $_ => $id) {
 
-        $content = get_ressource($id);
+        $content = get_resource($id);
         if (!$content) { continue; }
 
         $mp3s = get_mp3s($id);
