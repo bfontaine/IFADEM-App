@@ -1,9 +1,143 @@
 $(function() {
 
-    var api_calls = {
-        username: '/?api=register-username',
-        resources: '/?select-resources'
-    };
+    var user = {}, // current user
+    
+        api_calls = {
+            user: 'GET /?api=user',
+            username: 'POST /?api=register-username',
+            resources: 'POST /?select-resources'
+        };
+
+    /*****************
+     * Compatibility *
+     *****************/
+
+    if (!(typeof String.prototype.trim == 'function')) {
+        var trailing_spaces = /^\s+|\s+$/g;
+        
+        String.prototype.trim = function() {
+            return this.replace(trailing_spaces, '');
+        };
+    }
+
+    if (!window.console) { window.console = {log: $.noop}; }
+
+    /*************
+     * API Calls *
+     *************/
+
+    function default_api_err( d, ep ) {
+        console.log("API Error [" + ep + "]: " + JSON.stringify(d));
+    }
+
+    /**
+     * Perform a call to the server API.
+     * @endpoint [String]: name of the endpoint
+     * @data [Object]: params to give to the server
+     * @callback [Function]: success callback (optional)
+     * @err [Function]: error callback (optional)
+     *
+     * Callback are given the following arguments:
+     *  - data returned by the API
+     *  - endpoint
+     **/
+    function api( endpoint, data, callback, err ) {
+        var url = api_calls[endpoint],
+            mth;
+
+        err || (err = default_api_err);
+        callback || (callback = $.noop);
+        
+        if (!url) { err( {}, endpoint ); }
+
+        url = url.split(' ', 2);
+        mth = url[0];
+        url = url[1];
+
+        return $.ajax({
+            url: url,
+            method: mth,
+            dataType: 'json',
+            data: data,
+            success: function( s ) {
+                return callback( s, endpoint );
+            },
+            error: function( s ) {
+                return err( s, endpoint );
+            }
+        });
+    }
+
+    // Update the current user
+    function update_user() {
+        api('user', {}, function( u ) {
+            user = u;
+        });
+    }
+
+    // Register the user's username
+    function register_username() {
+        api('username', {
+            username: user.id
+        }, function( u ) {
+            user = u; 
+        });
+    }
+
+    // Select resources
+    function select_resources() {
+        var res = user.resources, ids = [], id;
+
+        for (id in res) { // not sure if Object.keys is supported
+            if (res.hasOwnProperty(id)) {
+                ids.push(id);
+            }
+        }
+
+        api('select-resources', {
+            ids: ids
+        }, function( u ) {
+            user = u;
+        });
+    }
+
+    if (window.user) {
+        user = window.user;
+        delete window.user;
+    } else {
+        update_user();
+    }
+
+    /******************
+     * Pages Bindings *
+     ******************/
+
+    /** Landing Page **/
+    (function __landing_page() {
+        var $uform  = $( '#user-id-form' ),
+            $uinput = $( '#user-id' ),
+
+            // update the username
+            chg_username = function() {
+                var new_id = $uinput.val().trim();
+
+                if (user.id == new_id) { return; }
+
+                user.id = new_id;
+                register_username();
+            };
+
+        $uform.submit(function( e ) {
+            chg_username();
+            e.preventDefault();
+            return false;
+        });
+
+        $uinput.change(chg_username);
+
+    })();
+
+    /*
     
     // TODO
 
@@ -19,14 +153,6 @@ $(function() {
         data_selected_count_attr = 'country-selected-count',
         data_selected_count_sel  = '.selected-count .count',
 
-        // not sure if String#trim is supported by all browsers
-        trim = (function() {
-            var trailing_spaces = /^\s+|\s+$/g;
-            return function(s) { return s.replace(trailing_spaces, ''); };
-        })();
-
-
-    if (!window.console) { window.console = {log: $.noop}; }
 
     // show/hide the 'cancel' button which deselect all contents
     function update_cancel_button() {
@@ -94,7 +220,7 @@ $(function() {
     $b_confirm.click(function() {
 
         // get the username
-        var username = trim($username_input.val()),
+        var username = $username_input.val().trim(),
         // get the contents' ids
             ids = $( '.content.selected' ).map(function(i, e) {
                     return $(e).data('contentId'); }).toArray();
@@ -126,5 +252,5 @@ $(function() {
 
     });
     
-
+    */
 });

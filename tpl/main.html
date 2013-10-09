@@ -18,6 +18,8 @@
         <link rel="apple-touch-icon-precomposed" href="imgs/ifadem-logo.png" />
     </head>
     <body>
+        <script>var user = {{ user_json|raw }};</script>
+
         {##
          # Landing page
          # ----------------
@@ -33,7 +35,7 @@
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />{{ title|default('IFADEM') }}</h1>
             </div>
             <div data-role="content">
-                <form class="inline" id="user-id-form">
+                <form class="inline" id="user-id-form" data-ajax="false">
                     <input type="text" placeholder="Choisissez un pseudo..." id="user-id" value="{{ user.id }}" />
                 </form>
 

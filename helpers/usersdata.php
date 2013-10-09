@@ -27,6 +27,7 @@ class User {
     private $loaded = false;
 
     public function __construct($id=null) {
+        error_log("new [".$id."].");
         $this->id($id);
     }
 
@@ -46,7 +47,7 @@ class User {
      **/
     public function id($id=null) {
         if ($id) { $this->userid = "$id"; return $this; }
-        return $this->userid();
+        return $this->userid;
     }
 
     /**
@@ -144,7 +145,7 @@ function random_username() {
 function user() {
     $u = null;
 
-    if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+    if (isset($_SESSION['user']) && ($_SESSION['user'] instanceof User)) {
         $u = $_SESSION['user'];
     }
 

@@ -39,7 +39,9 @@ function main_page() {
         $r['mp3s'] = $mp3s;
         $r['mp3s_count'] = count($mp3s);
 
-        if ($selected[''.$r['id']]) {
+        $rid = ''.$r['id'];
+
+        if (isset($selected[$rid]) && $selected[$rid]) {
             $countries[$country['id']]['selected_count'] += 1;
         }
 
@@ -52,6 +54,7 @@ function main_page() {
             'rss_url' => $id ? podcasts_feed_url($id) : '',
             'has_selected_resources' => count($selected) > 0
         ),
+        'user_json' => json_encode($user->toArray()),
         'countries' => $countries
     ));
 
@@ -59,6 +62,9 @@ function main_page() {
 
 function json($data) {
     header('Content-Type: application/json; charset=utf-8');
+    if ($data instanceof User) {
+        $data = $data->toArray();
+    }
     return json_encode($data);
 }
 
@@ -66,6 +72,12 @@ function json($data) {
 // /?api=<call>
 function api($call) {
     $badparams = array( 'error' => 'bad parameters.' );
+
+    // [GET] Get the current user
+    // -> current user
+    if ($call == 'user') {
+        return user();
+    }
 
     // [POST] Register an username
     // username: <name>
@@ -75,7 +87,8 @@ function api($call) {
             return $badparams;
         }
         $name = trim($_POST['username']);
-        return user()->id($name)->toArray();
+        user()->id($name);
+        return user();
     }
 
     // [POST] Select resources
@@ -88,10 +101,8 @@ function api($call) {
 
         $ids = explode(',', trim($_POST['ids']));
 
-        $me = user();
-
-        update_podcasts($me->id(), $ids);
-        return $me->toArray();
+        update_podcasts(user()->id(), $ids);
+        return user();
     }
 
     return $badparams;
