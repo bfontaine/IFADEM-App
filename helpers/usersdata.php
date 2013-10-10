@@ -23,11 +23,10 @@ $data_cache = null;
 
 class User {
     private $userid;
-    private $resources;
+    private $_resources;
     private $loaded = false;
 
     public function __construct($id=null) {
-        error_log("new [".$id."].");
         $this->id($id);
     }
 
@@ -39,14 +38,14 @@ class User {
         $this->loaded = true;
         
         $data = load_user_data($this->id());
-        $this->resources = $data['resources'];
+        $this->_resources = $data['resources'];
     }
 
     /**
      * Set/get user's id
      **/
     public function id($id=null) {
-        if ($id) { $this->userid = "$id"; return $this; }
+        if ($id) { $this->userid = "$id"; $this->save(); return $this; }
         return $this->userid;
     }
 
@@ -55,13 +54,14 @@ class User {
      **/
     public function resources($res=null) {
         if ($res) {
-            $this->resources = $res;
+            $this->_resources = $res;
             $this->loaded = true;
+            $this->save();
             return $this;
         }
+        else if (!$this->loaded) { $this->loadResources(); }
 
-        if (!$this->loaded) { $this->loadResources(); }
-        return $this->resources;
+        return $this->_resources;
     }
 
     // get RSS feed URL
@@ -78,6 +78,7 @@ class User {
             'resources' => $this->resources(),
             'rss'       => $this->rss()
         ));
+        update_podcasts($this->id(), array_keys($this->resources()));
         return $this;
     }
 
@@ -131,10 +132,10 @@ function get_users_data($force=false) {
  * Save user data. It must be an array, as returned by load_user_data.
  **/
 function save_user_data($userdata) {
+    global $data_cache;
     $data = get_users_data();
     $data[$userdata['id']] = $userdata;
-    file_put_contents($datafile, json_encode($data));
-
+    file_put_contents(DATA_FILE, json_encode($data_cache = $data));
 }
 
 // generate a random username

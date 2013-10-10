@@ -5,8 +5,10 @@ $(function() {
         api_calls = {
             user: 'GET /?api=user',
             username: 'POST /?api=register-username',
-            resources: 'POST /?select-resources'
-        };
+            resources: 'POST /?api=select-resources'
+        },
+
+        $body = $('body');
 
     /*****************
      * Compatibility *
@@ -85,7 +87,7 @@ $(function() {
     }
 
     // Select resources
-    function select_resources() {
+    function select_resources( cb ) {
         var res = user.resources, ids = [], id;
 
         for (id in res) { // not sure if Object.keys is supported
@@ -94,16 +96,16 @@ $(function() {
             }
         }
 
-        api('select-resources', {
-            ids: ids
+        api('resources', {
+            ids: ids.join(',')
         }, function( u ) {
             user = u;
+            cb();
         });
     }
 
     if (window.user) {
         user = window.user;
-        delete window.user;
     } else {
         update_user();
     }
@@ -137,120 +139,104 @@ $(function() {
 
     })();
 
-    /*
-    
-    // TODO
+    /** Selection Page **/
+    (function __selection_page() {
+        var $cancel  = $('#b_cancel'),
+            $confirm = $('#select-contents'),
 
-    // ========= OLD CODE ======================== //
+            global_count = 0,
 
-    var global_count = 0,
-        $body        = $( 'body' ),
-        $b_confirm   = $( '#select-contents' ),
-        $b_cancel    = $('#b_cancel'),
-
-        $username_input = $( '#pseudo_inp' ),
-
-        data_selected_count_attr = 'country-selected-count',
-        data_selected_count_sel  = '.selected-count .count',
+            data_selected = {
+                count_attr: 'country-selected-count',
+                count_sel: '.selected-count .count'
+            };
 
 
-    // show/hide the 'cancel' button which deselect all contents
-    function update_cancel_button() {
-        $b_cancel.toggleClass('nodisplay', global_count === 0);
-    }
-
-    // a click on an image shows a pop-up with some infos about a content,
-    // while a click on the rest of the content (un)select it.
-    $body.on( 'click', '.content', function( e ) {
-
-        var nodeName = e.target.nodeName.toUpperCase(),
-            $content = nodeName == 'LI' ? $(e.target) : $(e.target).parent(),
-
-            $checkbox, $count, diff;
-
-        // set the data-country-selected-count attribute
-        if (!$content.data( data_selected_count_attr )) {
-
-            $content.data( data_selected_count_attr,
-                           $content
-                                .parent().parent().parent()
-                                .find( data_selected_count_sel ));
-
+        // show/hide the 'cancel' button which deselect all contents
+        function update_cancel_button() {
+            $cancel.toggleClass('nodisplay', global_count === 0);
         }
 
-        if (nodeName == 'IMG') {
-            $( '#content-details-' + $content.data( 'contentId' ) )
-                .popup()
-                .popup( 'open' )
-                // close on click
-                .one( 'click', function() { $(this).popup( 'close' ); });
-        } else {
-            $content.toggleClass( 'selected' );
-            $count = $content.data( data_selected_count_attr );
+        // a click on an image shows a pop-up with some infos about a content,
+        // while a click on the rest of the content (un)select it.
+        $body.on( 'click', '.content', function( e ) {
 
-            diff = $content.hasClass( 'selected' ) ? 1 : -1;
+            var nodeName = e.target.nodeName.toUpperCase(),
+                $content = nodeName == 'LI' ? $(e.target) : $(e.target).parent(),
 
-            // update the local count
-            $count.text( +$count.text() + diff);
+                $checkbox, $count, diff;
 
-            // update the global count
-            global_count += diff;
+            // set the data-country-selected-count attribute
+            if (!$content.data( data_selected.count_attr )) {
 
-            update_cancel_button();
-        }
+                $content.data( data_selected.count_attr,
+                               $content
+                                    .parent().parent().parent()
+                                    .find( data_selected.count_sel ));
 
-    });
-
-    $( '#confirm-cancelling' ).on( 'click', function() {
-
-        global_count = 0;
-        update_cancel_button();
-
-        $body.find( data_selected_count_sel ).map(function(i, e) {
-            e.innerText = e.textContent = 0;
-        });
-
-        $body.find( '.content.selected' ).map(function(i, e) {
-            $( e ).removeClass( 'selected' );
-        });
-
-    });
-
-    // contents' selection
-    $b_confirm.click(function() {
-
-        // get the username
-        var username = $username_input.val().trim(),
-        // get the contents' ids
-            ids = $( '.content.selected' ).map(function(i, e) {
-                    return $(e).data('contentId'); }).toArray();
-
-        $.ajax({
-            method: 'POST',
-            url: '/?p=select-resources',
-            data: {
-                username: username,
-                ids: ids.join(',')
-            },
-            success: function(data) {
-
-                // tmp code, for testing purposes
-
-                if (data.status !== 'ok') {
-                    console.log(data);
-                    alert('error!');
-                    return;
-                }
-
-                prompt('ok', data.url);
-            },
-            error: function() {
-                console.log("selection AJAX error:");
-                console.log([].slice.call(arguments));
             }
+
+            if (nodeName == 'IMG') {
+                $( '#content-details-' + $content.data( 'contentId' ) )
+                    .popup()
+                    .popup( 'open' )
+                    // close on click
+                    .one( 'click', function() { $(this).popup( 'close' ); });
+            } else {
+                $content.toggleClass( 'selected' );
+                $count = $content.data( data_selected.count_attr );
+
+                diff = $content.hasClass( 'selected' ) ? 1 : -1;
+
+                // update the local count
+                $count.text( +$count.text() + diff);
+
+                // update the global count
+                global_count += diff;
+
+                update_cancel_button();
+            }
+
         });
 
-    });
-    
-    */
+        $( '#confirm-cancelling' ).on( 'click', function() {
+
+            global_count = 0;
+            update_cancel_button();
+
+            $body.find( data_selected.count_sel ).map(function(i, e) {
+                e.innerText = e.textContent = 0;
+            });
+
+            $body.find( '.content.selected' ).map(function(i, e) {
+                $( e ).removeClass( 'selected' );
+            });
+
+            user.resources = [];
+            select_resources();
+
+        });
+
+        // contents' selection
+        $confirm.click(function() {
+            var ids = $( '.content.selected' ).map(function(i, e) {
+                return $(e).data('contentId');
+            }).toArray(), i;
+
+            user.resources = {};
+            for (i in ids) {
+                if (ids.hasOwnProperty(i)) {
+                    user.resources[ids[i]] = true;
+                }
+            }
+
+            select_resources(function() {
+                $.mobile.navigate('#landingpage');
+            });
+
+        });
+
+        update_cancel_button();
+    })();
+
 });

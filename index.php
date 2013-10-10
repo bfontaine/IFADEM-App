@@ -101,7 +101,13 @@ function api($call) {
 
         $ids = explode(',', trim($_POST['ids']));
 
-        update_podcasts(user()->id(), $ids);
+        $res = array();
+
+        foreach ($ids as $id) {
+            $res[$id] = true;
+        }
+
+        user()->resources($res)->save();
         return user();
     }
 

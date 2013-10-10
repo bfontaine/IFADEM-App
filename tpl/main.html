@@ -39,9 +39,8 @@
                     <input type="text" placeholder="Choisissez un pseudo..." id="user-id" value="{{ user.id }}" />
                 </form>
 
-                <a data-role="button" href="#selection-page" >{% if not user.has_selected_resources %}Sélectionner des ressources</a>
-                                                              {% else %}Changer les ressources sélectionnées</a>
-                <a data-role="button" href="#view-resources-page">Voir les ressources disponibles</a>{% endif %}
+                <a data-role="button" id="link_selection" href="#selection-page" >Sélectionner des ressources</a>
+                <a data-role="button" id="link_resources" href="#view-resources-page">Voir les ressources disponibles</a>
             </div>
         </div>
 
@@ -147,7 +146,7 @@
         <div data-role="page" id="view-resources-page">
             <div data-role="header">
                 <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
-               <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources disponibles</h1>
+               <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources</h1>
             </div>
             <div data-role="content">
                 <p>Vous pouvez voir vos ressources disponibles via l'application RSS (recommandé), ou via

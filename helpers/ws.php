@@ -111,7 +111,7 @@ function get_resources($criteria=null) {
 function get_resource($id) {
     $res = get_resources("Reference=$id");
 
-    if ($res) { return $rss[0]; }
+    if ($res) { return $res[0]; }
 
     return null;
 }

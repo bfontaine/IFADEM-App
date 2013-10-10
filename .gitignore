@@ -6,3 +6,4 @@
 /tpl/cache
 /p/*
 composer.lock
+usersdata.json
