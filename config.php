@@ -25,7 +25,7 @@ define('WS_URL', 'https://c2i.education.fr/ifademws/ws.php');
  *
  * then the root is 'example.org/ifadem'. Don't add the trailing slash at the
  * end. */
-define('ROOT_URL', 'ifadem-02.bfontaine.net');
+define('ROOT_URL', 'ifadem.bfontaine.net');
 /*
  *
  * The base URL for each podcast feed. Note that all directories must exist. */
