@@ -239,6 +239,19 @@ $(function() {
         });
 
         update_cancel_button();
+
+        /* update selected resources */
+        $( '.content' ).each(function( _, c ) {
+            var $c = $(c),
+                id = $c.data('contentId');
+
+            if (user.resources[+id] || user.resources[id]) {
+                $c.addClass( 'selected' );
+            } else {
+                $c.removeClass( 'selected' );
+            }
+        });
+        
     })();
 
 });
