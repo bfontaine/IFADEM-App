@@ -82,13 +82,13 @@ function api($call) {
 
     // [POST] Register an username
     // username: <name>
-    // -> current user
+    // -> new current user
     if ($call == 'register-username') {
         if (!isset($_POST['username'])) {
             return $badparams;
         }
         $name = trim($_POST['username']);
-        user()->id($name);
+        user(new User($name));
         return user();
     }
 

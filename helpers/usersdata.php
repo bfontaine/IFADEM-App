@@ -149,7 +149,11 @@ function random_username() {
     return 'user' . mt_rand(100, 99999);
 }
 
-function user() {
+// get the current user
+// if an argument is given, it become the new current user.
+function user($newuser=null) {
+    if ($newuser instanceof User) { $_SESSION['user'] = $newuser; }
+
     $u = null;
 
     if (isset($_SESSION['user']) && ($_SESSION['user'] instanceof User)) {

@@ -36,18 +36,13 @@ Mercredi 26/06, 10h.
 - [x] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
 - [~] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
   afficher l’URL à copier
-- [ ] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
+- [x] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
   ressources, qui mène vers une page qui met en cache les ressources (AppCache)
-- [ ] Si l’utilisateur a rentré quelquechose dans le champ de pseudo, faire un
-  appel à `?p=usernames` pour récupérer la liste des pseudos et vérifiez que
-  celui-ci n’est pas déjà pris par quelqu’un d’autre.
-- [ ] Si c’est le cas, afficher « ce pseudo est déjà pris, êtes-vous sûr que
-  c’est bien le vôtre » ou équivalent.
-- [ ] Si ça n’est pas le cas, pré-enregistrer le pseudo auprès du serveur et
+- [~] Si ça n’est pas le cas, pré-enregistrer le pseudo auprès du serveur et
   afficher une confirmation visuelle.
-- [ ] Au chargement de la page, vérifiez en PHP si un pseudo est dans le cookie,
+- [x] Au chargement de la page, vérifiez en PHP si un pseudo est dans le cookie,
   et si oui, l’afficher dans le champ
-- [ ] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
+- [x] Au chargement de la page, si le pseudo est dans le cookie, récupérer la
   liste des ids des ressources sélectionnées, et les pré-sélectionner via PHP
   (ou appel d’API).
 
@@ -62,3 +57,9 @@ Mardi 17/09:
   l’utilisation de AppCache et de l’appli Android.
 - [ ] Sélection du pseudo dans la première page.
 
+Octobre:
+
+- [x] Quand on change de pseudo, charger les ressources concernées, ce n’est pas un
+  changement de pseudo d’un utilisateur mais un changement d’utilisateur
+- [ ] Préselectionner les ressources sur la page de sélection en JS, parce que
+  le changement de pseudo a pu être réalisé après le chargement de la page.
