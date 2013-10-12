@@ -1,14 +1,20 @@
+var user = window.user;
+
 $(function() {
 
-    var user = {}, // current user
-    
-        api_calls = {
+    var api_calls = {
             user: 'GET /?api=user',
             username: 'POST /?api=register-username',
             resources: 'POST /?api=select-resources'
         },
 
         $body = $('body');
+
+    if ( user ) {
+        set_user( user );
+    } else {
+        update_user();
+    }
 
     /*****************
      * Compatibility *
@@ -38,17 +44,21 @@ $(function() {
      * @data [Object]: params to give to the server
      * @callback [Function]: success callback (optional)
      * @err [Function]: error callback (optional)
+     * @showLoad [Boolean]: if true, a loading spinner is
+     * displayed (optional, default: true)
      *
      * Callback are given the following arguments:
      *  - data returned by the API
      *  - endpoint
      **/
-    function api( endpoint, data, callback, err ) {
+    function api( endpoint, data, callback, err, showLoad ) {
         var url = api_calls[endpoint],
             mth;
 
+        // set defaults
         err || (err = default_api_err);
         callback || (callback = $.noop);
+        showLoad = (showLoad == undefined) ? true : showLoad;
         
         if (!url) { err( {}, endpoint ); }
 
@@ -56,34 +66,42 @@ $(function() {
         mth = url[0];
         url = url[1];
 
+        $.mobile.loading('show');
+
         return $.ajax({
             url: url,
             method: mth,
             dataType: 'json',
             data: data,
             success: function( s ) {
+                $.mobile.loading('hide');
                 return callback( s, endpoint );
             },
             error: function( s ) {
+                $.mobile.loading('hide');
                 return err( s, endpoint );
             }
         });
     }
 
+    function set_user( u ) {
+        user = u;
+        if ($.isArray( u.resources ) && u.resources.length == 0) {
+            user.resources = {};
+        }
+    }
+
     // Update the current user
     function update_user() {
-        api('user', {}, function( u ) {
-            user = u;
-        });
+        api('user', {}, set_user);
+        return {};
     }
 
     // Register the user's username
     function register_username() {
         api('username', {
             username: user.id
-        }, function( u ) {
-            user = u; 
-        });
+        }, set_user);
     }
 
     // Select resources
@@ -101,15 +119,9 @@ $(function() {
         api('resources', {
             ids: ids.join(',')
         }, function( u ) {
-            user = u;
+            set_user( u );
             cb();
         });
-    }
-
-    if (window.user) {
-        user = window.user;
-    } else {
-        update_user();
     }
 
     /******************
@@ -125,7 +137,7 @@ $(function() {
             chg_username = function() {
                 var new_id = $uinput.val().trim();
 
-                if (user.id == new_id) { return; }
+                if (!new_id || user.id == new_id) { return; }
 
                 user.id = new_id;
                 register_username();
@@ -143,7 +155,8 @@ $(function() {
 
     /** Selection Page **/
     (function __selection_page() {
-        var $cancel  = $('#b_cancel'),
+        var $page    = $( '#selection-page' ),
+            $cancel  = $('#b_cancel'),
             $confirm = $('#select-contents'),
 
             global_count = 0,
@@ -219,6 +232,10 @@ $(function() {
 
         });
 
+        $('a[data-role="back"]').click(function() {
+            $('.ui-collapsible').trigger('collapse');
+        });
+
         // contents' selection
         $confirm.click(function() {
             var ids = $( '.content.selected' ).map(function(i, e) {
@@ -233,25 +250,58 @@ $(function() {
             }
 
             select_resources(function() {
+                $('.ui-collapsible').trigger('collapse');
                 $.mobile.navigate('#landingpage');
             });
 
         });
 
-        update_cancel_button();
+        $page.on('pagebeforeshow', function() {
+            update_cancel_button();
+            global_count = 0;
 
-        /* update selected resources */
-        $( '.content' ).each(function( _, c ) {
-            var $c = $(c),
-                id = $c.data('contentId');
+            /* update selected resources */
+            if (user && user.resources) {
+                $( '.content' ).each(function( _, c ) {
+                    var $c = $(c),
+                        id = $c.data('contentId');
 
-            if (user.resources[+id] || user.resources[id]) {
-                $c.addClass( 'selected' );
-            } else {
-                $c.removeClass( 'selected' );
+                    if (user.resources[+id] || user.resources[id]) {
+                        global_count++;
+                        $c.addClass( 'selected' );
+                    } else {
+                        global_count--;
+                        $c.removeClass( 'selected' );
+                    }
+                });
+
+                // update sub-counts
+                $('.ui-collapsible').each(function( i, e ) {
+                    var $e = $(e),
+                        $count = $e.find('span.count').first();
+
+                    $count.text( $e.find('.selected.content').length );
+
+                });
+
             }
+
+            (global_count < 0) && (global_count = 0);
         });
         
+    })();
+
+    /** 'view resources' page **/
+    (function __view_resources_page() {
+        var $page = $('#view-resources-page'),
+            $rss  = $('#rss-feed-url');
+        
+        $page.on('pagebeforeshow', function() {
+            if ( user.rss ) {
+                $rss.val(user.rss);
+            }
+        });
+
     })();
 
 });

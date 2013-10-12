@@ -61,5 +61,8 @@ Octobre:
 
 - [x] Quand on change de pseudo, charger les ressources concernées, ce n’est pas un
   changement de pseudo d’un utilisateur mais un changement d’utilisateur
-- [ ] Préselectionner les ressources sur la page de sélection en JS, parce que
+- [x] Préselectionner les ressources sur la page de sélection en JS, parce que
   le changement de pseudo a pu être réalisé après le chargement de la page.
+- [ ] Quand on clique sur un bouton de la landing page juste après avoir changé
+  de pseudo mais en étant toujours focusé sur le champ, attendre le retour du
+  call AJAX avant de naviguer sur une autre page.

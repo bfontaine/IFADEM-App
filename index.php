@@ -49,12 +49,14 @@ function main_page() {
         $countries[$country['id']]['contents'] []= $r;
     }
 
+    $tpl_user = user()->toArray();
+
+    if (count($selected) > 0) {
+        $tpl_user['has_selected_resources'] = true;
+    }
+
     return tpl_render('main.html', array(
-        'user' => array(
-            'id'      => $id,
-            'rss_url' => $id ? podcasts_feed_url($id) : '',
-            'has_selected_resources' => count($selected) > 0
-        ),
+        'user' => $tpl_user,
         'user_json' => json_encode($user->toArray()),
         'countries' => $countries
     ));
