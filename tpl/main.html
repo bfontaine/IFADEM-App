@@ -56,9 +56,12 @@
         <div data-role="page" id="selection-page">
             <div data-role="header">
 
+                {#
                 <a href="#cancelling-confirmation" data-role="button" data-rel="popup"
                                                    data-icon="delete" data-iconpos="notext"
                                                    id="b_cancel" class="nodisplay">Annuler</a>
+                #}
+                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
 
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />{{ title|default('IFADEM') }}</h1>
 
@@ -124,7 +127,7 @@
 
             {##
              # Selection cancelling pop-up
-             ##}
+             ##}{#
             <div data-role="popup" id="cancelling-confirmation">
                 <p>Êtes-vous sûr de vouloir annuler toute la sélection&nbsp;?
                    Cette action est irréversible, et désélectionnera
@@ -132,7 +135,7 @@
                 <a href="#home" data-role="button" data-rel="back">Non</a>
                 <a href="#home" data-role="button" data-rel="back" data-mini="true" id="confirm-cancelling">Oui</a>
             </div>
-        </div>
+        </div>#}
 
         {##
          # 'View resources' intermediate page
