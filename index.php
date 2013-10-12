@@ -43,6 +43,7 @@ function main_page() {
 
         if (isset($selected[$rid]) && $selected[$rid]) {
             $countries[$country['id']]['selected_count'] += 1;
+            $r['selected'] = true;
         }
 
         $countries[$country['id']]['contents'] []= $r;
@@ -109,6 +110,12 @@ function api($call) {
 
         user()->resources($res)->save();
         return user();
+    }
+
+    // [*] Ping the server to check if the user is online
+    // -> empty object
+    if ($call == 'ping') {
+        return array();
     }
 
     return $badparams;

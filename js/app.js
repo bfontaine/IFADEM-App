@@ -90,6 +90,8 @@ $(function() {
     function select_resources( cb ) {
         var res = user.resources, ids = [], id;
 
+        cb || (cb = $.noop);
+
         for (id in res) { // not sure if Object.keys is supported
             if (res.hasOwnProperty(id)) {
                 ids.push(id);
@@ -159,12 +161,12 @@ $(function() {
 
         // a click on an image shows a pop-up with some infos about a content,
         // while a click on the rest of the content (un)select it.
-        $body.on( 'click', '.content', function( e ) {
+        $body.on( 'click', '#selection-page .content', function( e ) {
 
             var nodeName = e.target.nodeName.toUpperCase(),
                 $content = nodeName == 'LI' ? $(e.target) : $(e.target).parent(),
 
-                $checkbox, $count, diff;
+                $checkbox, $count;
 
             // set the data-country-selected-count attribute
             if (!$content.data( data_selected.count_attr )) {
@@ -186,13 +188,13 @@ $(function() {
                 $content.toggleClass( 'selected' );
                 $count = $content.data( data_selected.count_attr );
 
-                diff = $content.hasClass( 'selected' ) ? 1 : -1;
-
                 // update the local count
-                $count.text( +$count.text() + diff);
+                $count.text( $content.parents('div.ui-collapsible-content')
+                                     .first()
+                                     .find('.selected.content').length );
 
                 // update the global count
-                global_count += diff;
+                global_count = $('.selected.content').length;
 
                 update_cancel_button();
             }

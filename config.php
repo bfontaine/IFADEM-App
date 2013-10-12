@@ -5,7 +5,7 @@
  * ---
  *
  * Current environment. Use 'dev' or 'prod': */
-define('ENV', 'dev');
+define('ENV', 'prod');
 /*
  * The root directory of the app. */
 define('ROOT_DIR', __DIR__);

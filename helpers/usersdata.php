@@ -64,7 +64,9 @@ class User {
         return $this->_resources;
     }
 
-    // get RSS feed URL
+    /**
+     *  get RSS feed URL
+     **/
     public function rss($root=true) {
         return podcasts_feed_url($this->id(), $root);
     }
@@ -82,10 +84,14 @@ class User {
         return $this;
     }
 
+    /**
+     * Return the object as an associative array
+     **/
     public function toArray() {
         return array(
-            'id' => $this->id(),
-            'resources' => $this->resources()
+            'id'        => $this->id(),
+            'resources' => $this->resources(),
+            'rss_url'   => $this->rss(true)
         );
     }
 
