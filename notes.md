@@ -48,14 +48,14 @@ Mercredi 26/06, 10h.
 
 Mardi 17/09:
 
-- [ ] Quand l’utilisateur entre un pseudo en haut, charger les contenus qu’il a
+- [x] Quand l’utilisateur entre un pseudo en haut, charger les contenus qu’il a
   déjà sélectionné (afficher X/5, etc)
-- [ ] Deux pages, une de sélection, une pour voir les contenus en cache, + une
+- [x] Deux pages, une de sélection, une pour voir les contenus en cache, + une
   première page pour choisir entre les deux en fonction du mode online/offline.
-- [ ] Sur la page des docs en cache, ajouter un indicateur de progression clair.
-- [ ] Après validation des contenus, page intermédiaire pour choisir entre
+- [x] Après validation des contenus, page intermédiaire pour choisir entre
   l’utilisation de AppCache et de l’appli Android.
-- [ ] Sélection du pseudo dans la première page.
+- [x] Sélection du pseudo dans la première page.
+- [ ] Sur la page des docs en cache, ajouter un indicateur de progression clair.
 
 Octobre:
 
@@ -63,6 +63,8 @@ Octobre:
   changement de pseudo d’un utilisateur mais un changement d’utilisateur
 - [x] Préselectionner les ressources sur la page de sélection en JS, parce que
   le changement de pseudo a pu être réalisé après le chargement de la page.
+- [x] Déplacer les liens vers les page d’aide & à propos sur la page d’accueil
+- [x] Déplacer les logos sur la page d’accueil
 - [ ] Quand on clique sur un bouton de la landing page juste après avoir changé
   de pseudo mais en étant toujours focusé sur le champ, attendre le retour du
   call AJAX avant de naviguer sur une autre page.
