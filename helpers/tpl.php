@@ -12,7 +12,8 @@ function tpl_array($a) {
 
         // default template values
         'lang' => 'fr',
-        'dir'  => 'ltr'
+        'dir'  => 'ltr',
+        'app_js' => ENV == 'dev' ? 'js/app.js' : 'js/app.min.js'
 
     ), $a);
 }

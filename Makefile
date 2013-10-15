@@ -1,6 +1,9 @@
 # IFADEM App Makefile
 # v0.1.0
 
+JSCACHE=.jscache
+MINIFYJS=uglifyjs
+
 tpl/cache:
 	mkdir -p $@
 	chmod 777 $@
@@ -18,3 +21,9 @@ usersdata.json:
 p:
 	mkdir $@
 	chmod o+w $@
+
+clean:
+	rm -f *~ $(JSCACHE)
+
+js/app.min.js: js/app.js
+	$(MINIFYJS) < $< > $@
