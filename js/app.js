@@ -5,8 +5,12 @@ $(function() {
     var api_calls = {
             user: 'GET /?api=user',
             username: 'POST /?api=register-username',
-            resources: 'POST /?api=select-resources'
+            resources: 'POST /?api=select-resources',
+            ping: 'GET /?api=ping'
         },
+
+        updating = false,
+        isOnline,
 
         $body = $('body');
 
@@ -51,14 +55,14 @@ $(function() {
      *  - data returned by the API
      *  - endpoint
      **/
-    function api( endpoint, data, callback, err, showLoad ) {
+    function api( endpoint, data, callback, err, opts ) {
         var url = api_calls[endpoint],
             mth;
 
         // set defaults
         err || (err = default_api_err);
         callback || (callback = $.noop);
-        showLoad = (showLoad == undefined) ? true : showLoad;
+        opts = $.extend(true, {}, opts);
         
         if (!url) { err( {}, endpoint ); }
 
@@ -66,20 +70,27 @@ $(function() {
         mth = url[0];
         url = url[1];
 
-        $.mobile.loading('show');
+        if (opts.showLoad) {
+            $.mobile.loading('show');
+        }
+
+        updating = true;
 
         return $.ajax({
             url: url,
             method: mth,
             dataType: 'json',
             data: data,
+            timeout: 6000,
             success: function( s ) {
-                $.mobile.loading('hide');
+                if (opts.showLoad) { $.mobile.loading('hide'); }
+                updating = false;
                 return callback( s, endpoint );
             },
-            error: function( s ) {
-                $.mobile.loading('hide');
-                return err( s, endpoint );
+            error: function( x, t, m ) {
+                if (opts.showLoad) { $.mobile.loading('hide'); }
+                updating = false;
+                return err( x, t, m, endpoint );
             }
         });
     }
@@ -124,14 +135,56 @@ $(function() {
         });
     }
 
+    // ping the server and pass a boolean to a callback
+    function ping( cb ) {
+        cb || (cb = $.noop);
+
+        api('ping', { t: 'Q'+Math.random() },
+            function() { cb( true ); },
+            function(_, t) {
+            if (t === 'timeout') {
+                cb(false);
+            }
+            console.log( 'Ping error: ' + t );
+        });
+    }
+
+    /***********
+     * Helpers *
+     ***********/
+
+    // return true if the user is online, false if not
+    isOnline = (function() {
+        var _online = true;
+        
+        if (window.navigator && window.navigator.onLine !== undefined) {
+            return function() {
+                return navigator.onLine;
+            }
+        }
+
+        function _checkOnline() {
+            ping(function( d ) {
+                _online = d;
+            });
+            setTimeout(_checkOnline, 10000);
+        }
+        _checkOnline();
+
+        return function() { return _online; };
+    })();
+
+
     /******************
      * Pages Bindings *
      ******************/
 
     /** Landing Page **/
     (function __landing_page() {
-        var $uform  = $( '#user-id-form' ),
-            $uinput = $( '#user-id' ),
+        var $uform   = $( '#user-id-form' ),
+            $uinput  = $( '#user-id' ),
+            $sellink = $( '#link_selection' ),
+            $reslink = $( '#link_resources' ),
 
             // update the username
             chg_username = function() {
@@ -150,6 +203,21 @@ $(function() {
         });
 
         $uinput.change(chg_username);
+
+        $.each([ $reslink, $sellink ], function(i, $e) {
+
+            $e.click(function( e ) {
+                if (updating) {
+                    e.preventDefault();
+                    $.mobile.loading('show');
+                    setTimeout(function() {
+                        $e.click();
+                    }, 500);
+                    return false;
+                }
+            });
+
+        });
 
     })();
 
@@ -297,8 +365,8 @@ $(function() {
             $rss  = $('#rss-feed-url');
         
         $page.on('pagebeforeshow', function() {
-            if ( user.rss ) {
-                $rss.val(user.rss);
+            if ( user.rss_url ) {
+                $rss.val(user.rss_url);
             }
         });
 
