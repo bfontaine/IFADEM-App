@@ -4,7 +4,6 @@
 *.swo
 *.min.css
 *.min.js
-/vendor
 /tpl/cache
 /p/*
 composer.lock
