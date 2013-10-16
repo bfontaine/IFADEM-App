@@ -2,7 +2,6 @@
 # v0.1.0
 
 JSCACHE=.jscache
-MINIFYJS=uglifyjs
 
 tpl/cache:
 	mkdir -p $@
@@ -19,11 +18,8 @@ usersdata.json:
 # directory which contains *.rss podcast feeds
 # it may be changed using config.php
 p:
-	mkdir $@
+	mkdir -p $@
 	chmod o+w $@
 
 clean:
 	rm -f *~ $(JSCACHE)
-
-js/app.min.js: js/app.js
-	$(MINIFYJS) < $< > $@
