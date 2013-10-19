@@ -3,10 +3,10 @@ var user = window.user;
 $(function() {
 
     var api_calls = {
-            user: 'GET /?api=user',
-            username: 'POST /?api=register-username',
-            resources: 'POST /?api=select-resources',
-            ping: 'GET /?api=ping'
+            user: 'GET ?api=user',
+            username: 'POST ?api=register-username',
+            resources: 'POST ?api=select-resources',
+            ping: 'GET ?api=ping'
         },
 
         updating = false,
