@@ -57,7 +57,7 @@ Mardi 17/09:
 - [x] Sélection du pseudo dans la première page.
 - [ ] Sur la page des docs en cache, ajouter un indicateur de progression clair.
 
-Octobre:
+Lundi 21/10:
 
 - [x] Quand on change de pseudo, charger les ressources concernées, ce n’est pas un
   changement de pseudo d’un utilisateur mais un changement d’utilisateur
@@ -65,6 +65,10 @@ Octobre:
   le changement de pseudo a pu être réalisé après le chargement de la page.
 - [x] Déplacer les liens vers les page d’aide & à propos sur la page d’accueil
 - [x] Déplacer les logos sur la page d’accueil
-- [ ] Quand on clique sur un bouton de la landing page juste après avoir changé
+- [x] Quand on clique sur un bouton de la landing page juste après avoir changé
   de pseudo mais en étant toujours focusé sur le champ, attendre le retour du
   call AJAX avant de naviguer sur une autre page.
+
+Fin octobre:
+
+- [ ] Partie AppCache
