@@ -63,6 +63,16 @@ function main_page() {
 
 }
 
+function resources_page() {
+    $user = user();
+
+    // TODO
+    
+    return tpl_render('resources.html', array(
+        'user_json' => json_encode($user->toArray()),
+    ));
+}
+
 function json($data) {
     header('Content-Type: application/json; charset=utf-8');
     if ($data instanceof User) {
@@ -125,7 +135,11 @@ function api($call) {
 
 // -- basic routing
 if (!isset($_GET['api'])) {
-    echo main_page();
+    if (isset($_GET['p']) && $_GET['p'] == 'resources') {
+        echo resources_page();
+    } else {
+        echo main_page();
+    }
 } else {
     echo json(api($_GET['api']));
 }

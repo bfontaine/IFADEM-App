@@ -1,0 +1,2 @@
+var user = window.user;
+

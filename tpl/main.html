@@ -40,7 +40,8 @@
                 </form>
 
                 <a data-role="button" id="link_selection" href="#selection-page" >Sélectionner des ressources</a>
-                <a data-role="button" id="link_resources" href="#view-resources-page">Voir les ressources disponibles</a>
+                <a data-role="button" id="link_resources"
+                    href="#view-resources-page">Charger les ressources disponibles</a>
                 
                 <div>
                     <img class="logo" src="imgs/oif.png" width="239" height="103" alt="OIF" />
@@ -153,29 +154,12 @@
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources</h1>
             </div>
             <div data-role="content">
-                <p>Vous pouvez voir vos ressources disponibles via l'application RSS (recommandé), ou via
-                   le cache (expérimental). Lors de la première utilisation, copiez/collez l'adresse
-                   suivante dans l'application RSS<!-- TODO see if it's possible to open the app from the
-                   web instead of copy/pasting URLs -->&nbsp;:</p>
+                <p>Vous pouvez voir vos ressources disponibles via l'application RSS ou via le cache.</p>
+                <h3>RSS</h3>
+                <p>Lors de la première utilisation, copiez/collez l'adresse dans l'application RSS.</p>
                 <input type="text" id="rss-feed-url" value="{{ user.rss_url }}" />
-                <a href="#viewcached-page" data-role="button" data-iconpos="left">Voir les ressources en cache</a>
-            </div>
-        </div>
-
-        {##
-         # 'View cached' page
-         # ------------------
-         #
-         # TODO
-         #
-         ##}
-        <div data-role="page" id="viewcached-page">
-            <div data-role="header">
-                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
-               <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources en cache</h1>
-            </div>
-            <div data-role="content">
-                <p>Il n'y a aucune ressource disponible en cache pour le moment.</p>
+                <h3>Cache local</h3>
+                <a href="index.php?p=resources" data-ajax="false" data-inline="true" data-role="button">Charger les ressources en cache</a>
             </div>
         </div>
 
@@ -269,10 +253,6 @@
                 </ul>
             </div>
         </div>
-
-        <script>
-        var user = {{ user|json_encode|raw }};
-        </script>
 
         <script src="{{ app_js }}"></script>
     </body>
