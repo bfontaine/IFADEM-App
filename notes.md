@@ -73,12 +73,12 @@ Fin octobre:
 
 - [ ] Message "voir les ressources dispos" -> "charger les ressources dispos" si
   c'est dans le cache (ou les deux si pas possible de checker)
-- [ ] Mettre des gros titres pour montrer que RSS et AppCache sont deux
+- [x] Mettre des gros titres pour montrer que RSS et AppCache sont deux
   alternatives -> pour ne pas prendre les 2, et/ou une liste à deux éléments
   avec l’un qui contient l’adresse du flux RSS, l’autre un bouton/lien vers le
   webcache
 - [ ] Page "ressources.html" pour la gestion du cache (avec, e.g.,
   webcache-user42.manifest)
 - [ ] Partie AppCache
-- [ ] Nom du manifest dépend d’un hash de la sélection
-- [ ] user_json en double dans main.html
+- [ ] Nom du manifest dépend du nom d’utilisateur
+- [x] user\_json en double dans main.html
