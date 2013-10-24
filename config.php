@@ -32,6 +32,10 @@ define('ROOT_URL', 'ifadem.bfontaine.net');
 define('FEEDS_ROOT', 'p');
 /*
  *
+ * The base URL for each manifest (AppCache) file. See FEEDS_ROOT. */
+define('MANIFESTS_ROOT', 'p');
+/*
+ * 
  * === Localisation ===
  *
  *
