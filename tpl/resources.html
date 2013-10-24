@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ lang|default('fr') }}" dir="{{ dir|default('ltr') }}"><!--TODO: cache manifest -->
+<html lang="{{ lang|default('fr') }}" dir="{{ dir|default('ltr') }}" manifest="{{ appcache_manifest }}">
     <head>
         <meta charset="utf-8" />
         <meta name="language" content="{{ lang|default('fr') }}" />
@@ -18,9 +18,6 @@
         <link rel="apple-touch-icon-precomposed" href="imgs/ifadem-logo.png" />
     </head>
     <body class="resources">
-        <script>var user = {{ user_json|raw }},
-                    resources_page = true;</script>
-
         {##
          # Resources page
          # --------------
@@ -34,7 +31,7 @@
                <a href="index.php" data-ajax="false" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources en cache</h1>
             </div>
-            <div data-role="content">
+            <div data-role="content" id="content">
                 <!-- TODO -->
                 <p>Il n'y a pas de ressources disponibles ici pour le moment.</p>
             </div>
