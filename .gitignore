@@ -5,6 +5,7 @@
 *.min.css
 *.min.js
 /tpl/cache
-/p/*
+/p
+/resources
 composer.lock
 usersdata.json

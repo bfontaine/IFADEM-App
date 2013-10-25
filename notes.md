@@ -82,3 +82,6 @@ Fin octobre:
 - [ ] Partie AppCache
 - [ ] Nom du manifest dépend du nom d’utilisateur
 - [x] user\_json en double dans main.html
+- [x] Faire une copie locale des fichiers -> fonction qui prend en paramètre une
+  URL vers un fichier, et renvoit un chemin local pour ce fichier, soit
+  directement, soit après l’avoir mis en cache.

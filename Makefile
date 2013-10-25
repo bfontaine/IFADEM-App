@@ -1,8 +1,6 @@
 # IFADEM App Makefile
 # v0.1.0
 
-JSCACHE=.jscache
-
 tpl/cache:
 	mkdir -p $@
 	chmod 777 $@
@@ -10,7 +8,7 @@ tpl/cache:
 php-dependencies:
 	composer install
 
-usersdata: usersdata.json p
+usersdata: usersdata.json p resources
 
 usersdata.json:
 	echo "{}" > $@
@@ -21,5 +19,10 @@ p:
 	mkdir -p $@
 	chmod o+w $@
 
+# idem for cached resources
+resources:
+	mkdir -p $@
+	chmod o+w $@
+
 clean:
-	rm -f *~ $(JSCACHE)
+	rm -f *~
