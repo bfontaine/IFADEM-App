@@ -94,8 +94,8 @@ define('CACHE_RESOURCES', true);
 /*
  * 
  * The TTL (Time To Live) of the cached resources.
- * Defaul: 86400 (one day)
+ * Defaul: 432000 (five days)
  */
-define('CACHE_TTL', 86400);
+define('CACHE_TTL', 432000);
 /*
  **/
