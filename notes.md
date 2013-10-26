@@ -71,17 +71,18 @@ Lundi 21/10:
 
 Fin octobre:
 
-- [ ] Message "voir les ressources dispos" -> "charger les ressources dispos" si
-  c'est dans le cache (ou les deux si pas possible de checker)
 - [x] Mettre des gros titres pour montrer que RSS et AppCache sont deux
   alternatives -> pour ne pas prendre les 2, et/ou une liste à deux éléments
   avec l’un qui contient l’adresse du flux RSS, l’autre un bouton/lien vers le
   webcache
-- [ ] Page "ressources.html" pour la gestion du cache (avec, e.g.,
-  webcache-user42.manifest)
-- [ ] Partie AppCache
-- [ ] Nom du manifest dépend du nom d’utilisateur
+- [x] Nom du manifest dépend du nom d’utilisateur
 - [x] user\_json en double dans main.html
 - [x] Faire une copie locale des fichiers -> fonction qui prend en paramètre une
   URL vers un fichier, et renvoit un chemin local pour ce fichier, soit
   directement, soit après l’avoir mis en cache.
+- [ ] Message "voir les ressources dispos" -> "charger les ressources dispos" si
+  c'est dans le cache (ou les deux si pas possible de checker)
+- [ ] Page "ressources.html" pour la gestion du cache (avec, e.g.,
+  webcache-user42.manifest)
+- [ ] Partie AppCache
+- [ ] Indicateur de progression pour AppCache

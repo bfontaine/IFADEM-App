@@ -80,7 +80,12 @@ class User {
             'resources' => $this->resources(),
             'rss'       => $this->rss()
         ));
-        update_podcasts($this->id(), array_keys($this->resources()));
+
+        $ids = array_keys($this->resources());
+
+        update_podcasts($this->id(), $ids);
+        update_manifest($this->id(), $ids);
+
         return $this;
     }
 
