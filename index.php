@@ -66,9 +66,9 @@ function main_page() {
 function resources_page() {
     $user = user();
     
+    // FIXME: the manifest URL is empty in the HTML output
     return tpl_render('resources.html', array(
-        'user_json' => json_encode($user->toArray()),
-        'appcache_manifest' => manifest_url($user->id()),
+        'appcache_manifest' => manifest_url($user->id(), false),
         'resources' => array( /* TODO */ )
     ));
 }

@@ -63,6 +63,8 @@ $(function() {
         err || (err = default_api_err);
         callback || (callback = $.noop);
         opts = $.extend(true, {}, opts);
+
+        timeout = opts.timeout || 6000;
         
         if (!url) { err( {}, endpoint ); }
 
@@ -81,7 +83,7 @@ $(function() {
             method: mth,
             dataType: 'json',
             data: data,
-            timeout: 6000,
+            timeout: timeout,
             success: function( s ) {
                 if (opts.showLoad) { $.mobile.loading('hide'); }
                 updating = false;
@@ -132,7 +134,7 @@ $(function() {
         }, function( u ) {
             set_user( u );
             cb();
-        });
+        }, null, { showLoad: true, timeout: 30000 });
     }
 
     // ping the server and pass a boolean to a callback
@@ -164,9 +166,7 @@ $(function() {
         }
 
         function _checkOnline() {
-            ping(function( d ) {
-                _online = d;
-            });
+            ping(function( d ) { _online = d; });
             setTimeout(_checkOnline, 10000);
         }
         _checkOnline();

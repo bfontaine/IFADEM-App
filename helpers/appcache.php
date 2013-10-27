@@ -2,7 +2,7 @@
 
 function manifest_url($username=null, $root=true) {
     if ($username === null) { $username = user()->id(); }
-    return ($root ? ROOT_URL : '') . '/' . MANIFESTS_ROOT . "/$username.appcache";
+    return ($root ? ROOT_URL . '/' : '') . MANIFESTS_ROOT . "/$username.appcache";
 }
 
 function update_manifest($username, $ids) {
@@ -24,7 +24,9 @@ function update_manifest($username, $ids) {
         }
 
         foreach ($mp3s as $mp3) {
-            $files []= $mp3['url'];
+            if ($mp3['url']) {
+                $files []= $mp3['url'];
+            }
         }
 
         $hash .= "-$id";
@@ -35,5 +37,5 @@ function update_manifest($username, $ids) {
 
     $content = "CACHE MANIFEST\n# v$hash\n$list\n";
 
-    return file_put_contents(ROOT_DIR . $subpath, $content) !== FALSE;
+    return file_put_contents(ROOT_DIR . '/' . $subpath, $content) !== FALSE;
 }

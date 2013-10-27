@@ -6,8 +6,7 @@
 
         $content = $('#content');
 
-
-    if (!appcache) {
+    if (!appCache) {
         $content.html('<p>Le cache n\'est pas supporté par votre navigateur.</p>');
         return;
     }

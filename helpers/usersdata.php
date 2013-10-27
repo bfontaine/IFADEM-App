@@ -45,7 +45,7 @@ class User {
      * Set/get user's id
      **/
     public function id($id=null) {
-        if ($id) { $this->userid = "$id"; $this->save(); return $this; }
+        if ($id) { $this->userid = "$id"; $this->save(false); return $this; }
         return $this->userid;
     }
 
@@ -74,7 +74,7 @@ class User {
     /**
      * Save user's data
      **/
-    public function save() {
+    public function save($update_files=true) {
         save_user_data(array(
             'id'        => $this->id(),
             'resources' => $this->resources(),
@@ -83,8 +83,10 @@ class User {
 
         $ids = array_keys($this->resources());
 
-        update_podcasts($this->id(), $ids);
-        update_manifest($this->id(), $ids);
+        if ($update_files) {
+            update_podcasts($this->id(), $ids);
+            update_manifest($this->id(), $ids);
+        }
 
         return $this;
     }

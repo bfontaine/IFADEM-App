@@ -24,19 +24,22 @@ function cache_res($url, $root=true, $ttl=0) {
 
         $u = RESOURCES_CACHE_ROOT . '/';
 
-        if (isHTTP($url)) {
-            $url = substr($url, 7);
-        } else if (isHTTPS($url)) {
-            $url = substr($url, 8);
+        $url2 = $url;
+
+        if (isHTTP($url2)) {
+            $url2 = substr($url2, 7);
+        } else if (isHTTPS($url2)) {
+            $url2 = substr($url2, 8);
         }
 
-        $parts = explode('/', $url);
+        $parts = explode('/', $url2);
 
         $u .= $parts[count($parts)-1];
 
     }
 
-    $t = file_exists($u) ? filemtime($u) : -1;
+    $exists = $u && file_exists($u);
+    $t = $exists ? filemtime($u) : -1;
 
     if ($t <= 0 || time() - $t > $ttl) {
 
@@ -44,7 +47,6 @@ function cache_res($url, $root=true, $ttl=0) {
             $url = 'http://' . $url;
         }
 
-        // FIXME 'http://' is not prepended to $url
         $data = file_get_contents($url);
 
         if ($data !== FALSE) {

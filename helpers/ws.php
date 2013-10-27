@@ -50,6 +50,7 @@ function get_countries() {
  * The type of each value is not checked.
  **/
 function get_resources($criteria=null, $cache=false) {
+    $cache = true; // test
 
     $args = array();
     $resources = array();
@@ -63,6 +64,10 @@ function get_resources($criteria=null, $cache=false) {
     if (!$raw_resources) { return $resources; }
 
     foreach ($raw_resources as $_ => $resource) {
+        $url = $resource['Entree_Identifiant'];
+
+        if (!$url) { continue; }
+
         $r = array(
 
             'age'         => $resource['Age'],
@@ -82,7 +87,7 @@ function get_resources($criteria=null, $cache=false) {
             'validated'   => $resource['validation'],
             'version'     => $resource['Version'],
 
-            'content'     => $resource['Entree_Identifiant'],
+            'content'     => $cache ? cache_res($url) : $url,
             'thumbnail'   => $resource['Image']
                                     ? $resource['Image']
                                     : 'imgs/default-icon.png',
@@ -99,10 +104,6 @@ function get_resources($criteria=null, $cache=false) {
                     : null
 
         );
-
-        if ($cache) {
-            $r['content'] = cache_res($r['content']);
-        }
 
         $resources []= $r;
     }
@@ -140,6 +141,8 @@ function get_mp3s($id=null, $cache=false) {
     foreach ($raw_mp3s as $mp3) {
         $url = $mp3['Entree_Identifiant'];
         $len = strlen($url);
+
+        if ($len == 0) { continue; }
 
         // skip ZIP files
         if (strripos($url, '.zip', $len - 4) !== FALSE) { continue; }
