@@ -33,7 +33,12 @@
             </div>
             <div data-role="content" id="content">
                 <!-- TODO -->
-                <p>Il n'y a pas de ressources disponibles ici pour le moment.</p>
+                <p id="progress-status">Il n'y a pas de ressources disponibles ici pour le moment.</p>
+                <ul>
+                {% for r in resources %}
+                    <li><a href="{{r.href}}">{{r.title}}</a></li>
+                {%endfor%}
+                </ul>
             </div>
         </div>
 

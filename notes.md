@@ -80,9 +80,11 @@ Fin octobre:
 - [x] Faire une copie locale des fichiers -> fonction qui prend en paramètre une
   URL vers un fichier, et renvoit un chemin local pour ce fichier, soit
   directement, soit après l’avoir mis en cache.
-- [ ] Message "voir les ressources dispos" -> "charger les ressources dispos" si
+- [x] Message "voir les ressources dispos" -> "charger les ressources dispos" si
   c'est dans le cache (ou les deux si pas possible de checker)
-- [ ] Page "ressources.html" pour la gestion du cache (avec, e.g.,
+- [x] Page "ressources.html" pour la gestion du cache (avec, e.g.,
   webcache-user42.manifest)
-- [ ] Partie AppCache
-- [ ] Indicateur de progression pour AppCache
+- [x] Partie AppCache
+- [x] Indicateur de progression pour AppCache
+- [ ] Vérifier que le TTL est respecté pour le cache (i.e. contenus pas
+      re-fetchés à chaque fois)

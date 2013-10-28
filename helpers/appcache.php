@@ -8,7 +8,16 @@ function manifest_url($username=null, $root=true) {
 function update_manifest($username, $ids) {
 
     $subpath = manifest_url($username, false);
-    $files = array();
+    $files = array(
+        '../js/jquery.mobile-1.3.1.min.css',
+        '../css/main.css',
+        '../js/jquery-1.9.1.min.js',
+        '../js/jquery.mobile-1.3.1.min.js',
+        '../js/images/icons-18-white.png',
+        '../js/images/ajax-loader.gif',
+        '../js/resources.js',
+        '../imgs/ifadem-logo.png'
+    );
     $hash = '';
 
     /*
