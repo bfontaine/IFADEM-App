@@ -11,21 +11,27 @@ function update_manifest($username, $ids) {
     $files = array();
     $hash = '';
 
+    /*
+        Note that we have to prepend '../' to files paths because the manifest is
+        in p/, while the paths start with resources/ so we need to replace this
+        with ../resources/ to get the correct relative path.
+     */
+
     foreach ($ids as $_ => $id) {
 
-        $content = get_resource($id, true);
+        $content = get_resource($id, true, false);
         if (!$content) { continue; }
 
-        $mp3s = get_mp3s($id, true);
+        $mp3s = get_mp3s($id, true, false);
 
         // content's PDF
         if ($content['content']) {
-            $files []= $content['content'];
+            $files []= '../' . $content['content'];
         }
 
         foreach ($mp3s as $mp3) {
             if ($mp3['url']) {
-                $files []= $mp3['url'];
+                $files []= '../' . $mp3['url'];
             }
         }
 

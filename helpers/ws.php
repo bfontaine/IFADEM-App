@@ -49,7 +49,7 @@ function get_countries() {
  * thumbnail, country, creation_date, modification_date.
  * The type of each value is not checked.
  **/
-function get_resources($criteria=null, $cache=false) {
+function get_resources($criteria=null, $cache=false, $root=true) {
     $cache = true; // test
 
     $args = array();
@@ -87,7 +87,7 @@ function get_resources($criteria=null, $cache=false) {
             'validated'   => $resource['validation'],
             'version'     => $resource['Version'],
 
-            'content'     => $cache ? cache_res($url) : $url,
+            'content'     => $cache ? cache_res($url, $root) : $url,
             'thumbnail'   => $resource['Image']
                                     ? $resource['Image']
                                     : 'imgs/default-icon.png',
@@ -115,8 +115,8 @@ function get_resources($criteria=null, $cache=false) {
  * Find a resource by its id. See [get_resources] for the return
  * value.
  **/
-function get_resource($id, $cache=false) {
-    $res = get_resources("Reference=$id", $cache);
+function get_resource($id, $cache=false, $root=true) {
+    $res = get_resources("Reference=$id", $cache, $root);
 
     if ($res) { return $res[0]; }
 
@@ -129,7 +129,7 @@ function get_resource($id, $cache=false) {
  * as an argument, if any. Each MP3 is an associative array with
  * the following keys: id, resource_id, url, size.
  **/
-function get_mp3s($id=null, $cache=false) {
+function get_mp3s($id=null, $cache=false, $root=true) {
     $params = array();
     if ($id != null) {
         $params['critere'] = 'Reference=' . $id;
@@ -150,7 +150,7 @@ function get_mp3s($id=null, $cache=false) {
         $mp3s []= array(
             'id'          => $mp3['id'],
             'resource_id' => $mp3['Reference'],
-            'url'         => $cache ? cache_res($url) : $url,
+            'url'         => $cache ? cache_res($url, $root) : $url,
             'size'        => (double)$mp3['Taille'],
             'title'       => $mp3['titre_mp3_ws']
         );
