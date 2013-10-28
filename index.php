@@ -65,6 +65,9 @@ function main_page() {
 
 function resources_page() {
     $user = user();
+
+    // TODO: for each resource id we need the corresponding
+    // URL+title as well as the URL+title for each of its mp3's
     
     return tpl_render('resources.html', array(
         'appcache_manifest' => manifest_url($user->id(), false),
