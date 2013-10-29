@@ -88,3 +88,7 @@ Fin octobre:
 - [x] Indicateur de progression pour AppCache
 - [ ] Vérifier que le TTL est respecté pour le cache (i.e. contenus pas
       re-fetchés à chaque fois)
+- [ ] Garder les méta-données des ressources & médias dans un cache (i.e. au moins
+      titre et URL pour les PDF+MP3 associés à chaque ressource)
+- [ ] Ajouter la liste des données disponibles avec des liens sur la page du
+      cache
