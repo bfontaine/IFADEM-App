@@ -50,7 +50,6 @@ function get_countries() {
  * The type of each value is not checked.
  **/
 function get_resources($criteria=null, $cache=false, $root=true) {
-    $cache = true; // test
 
     $args = array();
     $resources = array();
@@ -108,6 +107,10 @@ function get_resources($criteria=null, $cache=false, $root=true) {
         $resources []= $r;
     }
 
+    if (defined('CACHE_RESOURCES') && CACHE_RESOURCES) {
+        cache_resources_metadata($resources);
+    }
+
     return $resources;
 }
 
@@ -154,6 +157,10 @@ function get_mp3s($id=null, $cache=false, $root=true) {
             'size'        => (double)$mp3['Taille'],
             'title'       => $mp3['titre_mp3_ws']
         );
+    }
+
+    if (defined('CACHE_RESOURCES') && CACHE_RESOURCES) {
+        cache_mp3s_metadata($mp3s);
     }
 
     return $mp3s;

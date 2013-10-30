@@ -57,3 +57,40 @@ function cache_res($url, $root=true, $ttl=0) {
 
     return $root ? (ROOT_URL . '/' . $u) : $u;
 }
+
+
+define('RESOURCES_METADATA', RESOURCES_CACHE_ROOT . '/_metadata.json');
+
+/* Return resources metadata, with at least these keys:
+ *
+ * {
+ *   42: {
+ *     mp3s: [ { title: ..., url: ... }, ... ],
+ *     title: ...,
+ *     url: ...
+ *   },
+ *   ...
+ * }
+ *
+ *
+ * */
+function get_resources_metadata() {
+    if (!file_exists(RESOURCES_METADATA)) {
+        file_put_contents(RESOURCES_METADATA, '{}');
+    }
+
+    $data = file_get_contents(RESOURCES_METADATA);
+
+    if ($data) {
+        return json_decode($data, true);
+    }
+
+}
+
+function cache_mp3s_metadata($mp3s) {
+    // TODO
+}
+
+function cache_resources_metadata($ress) {
+    // TODO
+}
