@@ -43,7 +43,7 @@
     }).on('progress', function( e ) {
         // from:
         // www.jefclaes.be/2012/04/visualizing-offline-application-cache.html
-        var msg = "Mise à jour du cache... "
+        var msg = "Chargement des ressources... "
         if (e.lengthComputable) {
             setCacheStatus(msg + Math.round(e.loaded / e.total * 100) + '%');
         } else {
