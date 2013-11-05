@@ -34,7 +34,7 @@ Mercredi 26/06, 10h.
 - [x] Lors du clic sur le bouton de validation, envoyer la liste des ressources
   sélectionnées ainsi que le pseudo au serveur (JS)
 - [x] Côté serveur, générer / mettre à jour le fichier `/<pseudo>.xml`
-- [~] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
+- [x] Toujours côté serveur, retourner une confirmation (ou pas) et côté JS
   afficher l’URL à copier
 - [x] Lors de la confirmation du serveur, afficher aussi un lien pour voir les
   ressources, qui mène vers une page qui met en cache les ressources (AppCache)
@@ -55,7 +55,7 @@ Mardi 17/09:
 - [x] Après validation des contenus, page intermédiaire pour choisir entre
   l’utilisation de AppCache et de l’appli Android.
 - [x] Sélection du pseudo dans la première page.
-- [ ] Sur la page des docs en cache, ajouter un indicateur de progression clair.
+- [x] Sur la page des docs en cache, ajouter un indicateur de progression clair.
 
 Lundi 21/10:
 
@@ -92,3 +92,11 @@ Fin octobre:
       titre et URL pour les PDF+MP3 associés à chaque ressource)
 - [ ] Ajouter la liste des données disponibles avec des liens sur la page du
       cache
+
+Novembre:
+
+- [ ] Configure `ROOT_URL` via PHP (pas manuellement s'il est vide)
+- [ ] Mettre en cache les ressources au clic dans la page de sélection
+- [ ] Meilleurs messages d'erreur (`alert`)
+- [ ] Appli sur même serveur que les ressources -> abandonner le cache (config:
+      `false`)
