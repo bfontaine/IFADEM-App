@@ -100,3 +100,5 @@ Novembre:
 - [ ] Meilleurs messages d'erreur (`alert`)
 - [ ] Appli sur même serveur que les ressources -> abandonner le cache (config:
       `false`)
+- [ ] Dupliquer les chemins des ressources retournés par les Web services en
+      local pour tester sans le cache des ressources

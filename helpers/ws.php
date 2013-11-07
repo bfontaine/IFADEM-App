@@ -171,6 +171,8 @@ function get_mp3s($id=null, $cache=false, $root=true) {
  * and return an array of tags for the resource whose id is passed
  * as an argument, if any. Each tag is an associative array with
  * the following keys: id, resource_id, name.
+ *
+ * FIXME: this function may not be needed
  **/
 function get_tags($id=null) {
     $params = array();

@@ -82,20 +82,4 @@ define('TPL_CACHE_DIR', __DIR__ . '/tpl/cache');
  * Default: __DIR__.'/usersdata.json' */
 define('DATA_FILE', __DIR__ . '/usersdata.json');
 /*
- *
- * === Resources Caching ===
- *
- * Should resources be cached locally? If not and if the Web services
- * return URLs instead of local paths, the AppCache part of the app
- * won't work.
- * Default: true
- */
-define('CACHE_RESOURCES', true);
-/*
- * 
- * The TTL (Time To Live) of the cached resources.
- * Defaul: 432000 (five days)
- */
-define('CACHE_TTL', 432000);
-/*
  **/

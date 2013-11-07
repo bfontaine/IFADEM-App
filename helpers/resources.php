@@ -10,12 +10,13 @@ function isHTTPS($u) {
 
 // proxy function used to manage cached versions of resources
 function cache_res($url, $root=true, $ttl=0) {
-    if (!CACHE_RESOURCES) {
+    if (!defined('CACHE_RESOURCES') || !CACHE_RESOURCES) {
+        // TODO keep only the path, not the domain?
         return $url;
     }
 
     if ($ttl <= 0) {
-        $ttl = CACHE_TTL;
+        $ttl = defined('CACHE_TTL') ? CACHE_TTL : 2592000; // one month
     }
 
     if (strpos($url, '/') == 0) { // absolute path
@@ -87,10 +88,12 @@ function get_resources_metadata() {
 
 }
 
+// legacy function
 function cache_mp3s_metadata($mp3s) {
-    // TODO
+    return $mp3s;
 }
 
+// legacy function
 function cache_resources_metadata($ress) {
-    // TODO
+    return $ress;
 }
