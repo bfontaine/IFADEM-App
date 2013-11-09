@@ -9,6 +9,8 @@ import os
 import re
 import sys
 from urllib.request import urlopen
+from urllib.parse   import unquote
+from urllib.error   import HTTPError
 
 def mkdir_p(p):
     try:
@@ -24,21 +26,25 @@ def add_urls(q, m):
         q.append(re.sub(r'\\', '', loc.group(0))[1:-1])
 
 def retrieve_resource(url):
+    clean_url = unquote(url)
     path = ''
-    if url.startswith('/'):
-        path = url[1:]
+    if clean_url.startswith('/'):
+        path = clean.url[1:]
     else:
-        path = url[8:].split('/', 1)[1]
+        path = clean_url[8:].split('/', 1)[1]
 
     if os.path.isfile(path):
         return
 
     mkdir_p(os.path.dirname(path))
 
-    u = urlopen(url)
-    f = open(path, 'wb')
-    f.write(u.read())
-    f.close()
+    try:
+        u = urlopen(url)
+        f = open(path, 'wb')
+        f.write(u.read())
+        f.close()
+    except HTTPError as e:
+        print("\nError: %s with URL=%s" % (e, url))
 
 def print_urls_count(q):
     print("\rQuerying the Web services... %3d URLs." % len(q), end='')
