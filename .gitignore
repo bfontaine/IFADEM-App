@@ -4,8 +4,11 @@
 *.swo
 *.min.css
 *.min.js
+*.pyc
+__pycache__
 /tpl/cache
 /p
 /resources
+/utils/sites
 composer.lock
 usersdata.json
