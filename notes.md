@@ -86,19 +86,16 @@ Fin octobre:
   webcache-user42.manifest)
 - [x] Partie AppCache
 - [x] Indicateur de progression pour AppCache
-- [ ] Vérifier que le TTL est respecté pour le cache (i.e. contenus pas
-      re-fetchés à chaque fois)
-- [ ] Garder les méta-données des ressources & médias dans un cache (i.e. au moins
-      titre et URL pour les PDF+MP3 associés à chaque ressource)
 - [ ] Ajouter la liste des données disponibles avec des liens sur la page du
       cache
 
 Novembre:
 
 - [ ] Configure `ROOT_URL` via PHP (pas manuellement s'il est vide)
-- [ ] Mettre en cache les ressources au clic dans la page de sélection
 - [ ] Meilleurs messages d'erreur (`alert`)
-- [ ] Appli sur même serveur que les ressources -> abandonner le cache (config:
+- [x] Appli sur même serveur que les ressources -> abandonner le cache (config:
       `false`)
-- [ ] Dupliquer les chemins des ressources retournés par les Web services en
+- [x] Dupliquer les chemins des ressources retournés par les Web services en
       local pour tester sans le cache des ressources
+- [ ] Voir pourquoi la sélection de ressources prend autant de temps maintenant
+      que le cache est désactivé

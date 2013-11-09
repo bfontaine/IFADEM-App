@@ -8,7 +8,7 @@
 __pycache__
 /tpl/cache
 /p
-/resources
+/resources*
 /utils/sites
 composer.lock
 usersdata.json
