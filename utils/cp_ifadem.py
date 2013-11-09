@@ -10,8 +10,6 @@ import re
 import sys
 from urllib.request import urlopen
 
-import time # debugging
-
 def mkdir_p(p):
     try:
         os.makedirs(p, exist_ok=True)
@@ -47,7 +45,7 @@ def print_urls_count(q):
     sys.stdout.flush()
 
 def print_progress(done, total, name):
-    fmt = "\rRetrieving the resources... %3d/%3d - %-23s"
+    fmt = "\rRetrieving resources... %3d/%3d - %-23s"
     name = name.split('/')[-1]
     if (len(name) > 23):
         name = name[:10] + '...' + name[-10:]
@@ -72,8 +70,6 @@ def main():
 
     print_progress(total, total, 'done.')
     print('')
-    pass
-
 
 if __name__ == '__main__':
     main()
