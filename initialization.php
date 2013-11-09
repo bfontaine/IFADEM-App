@@ -33,3 +33,7 @@ $tpl_engine->getExtension('core')->setTimezone(TIMEZONE);
 foreach (glob(__DIR__ . '/helpers/*.php') as $f) {
     require_once $f;
 }
+if (!$ROOT_URL) {
+    $ROOT_URL = current_url_dir();
+}
+define('ROOT_URL', $ROOT_URL);

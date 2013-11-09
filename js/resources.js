@@ -29,6 +29,10 @@
         return o;
     }
 
+    if (appCache.status == appCache.idle) {
+        setCacheStatus('');
+    }
+
     s(appCache).on('updateready', function() {
         appCache.swapCache();
         console.log('Cache updated');

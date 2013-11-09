@@ -65,6 +65,9 @@ function get_resources($criteria=null, $cache=false, $root=true) {
     foreach ($raw_resources as $_ => $resource) {
         $url = $resource['Entree_Identifiant'];
 
+        // FIXME: some resources may have MP3s but no content URLs, we
+        // may have to return them anyway for functions that rely on this
+        // one to get the complete list of resources
         if (!$url) { continue; }
 
         $r = array(

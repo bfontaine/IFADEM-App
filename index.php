@@ -66,12 +66,34 @@ function main_page() {
 function resources_page() {
     $user = user();
 
-    // TODO: for each resource id we need the corresponding
-    // URL+title as well as the URL+title for each of its mp3's
+    $res  = get_resources();
+    $ures = $user->resources();
+
+    $tpl_links = array();
+
+    foreach ($res as $_ => $r) {
+        if (!array_key_exists($r['id'], $ures) || !$ures[$r['id']]) {
+            continue;
+        }
+
+        $tpl_links []= array(
+            'title' => $r['title'],
+            'href'  => $r['content']
+        );
+
+        $mp3s = get_mp3s($r['id']);
+
+        foreach ($mp3s as $_ => $m) {
+            $tpl_links []= array(
+                'title' => $m['title'],
+                'href'  => $m['url']
+            );
+        }
+    }
     
     return tpl_render('resources.html', array(
         'appcache_manifest' => manifest_url($user->id(), false),
-        'resources' => array( /* TODO */ )
+        'resources' => $tpl_links
     ));
 }
 
