@@ -11,11 +11,15 @@
         return;
     }
 
-    // ensure support of console.log
-    if (!w.console) { w=console = {}; }
-    if (!console.log) { console.log = function() {}; }
-
     var $progress = $('#progress-status');
+
+    if ($('li', $('#resources-list')).length > 0) {
+        $progress.text('');
+    }
+
+    // ensure support of console.log
+    if (!w.console) { w.console = {}; }
+    if (!console.log) { console.log = function() {}; }
 
     function setCacheStatus( m ) {
         $progress.text(m);
@@ -38,7 +42,7 @@
         console.log('Cache updated');
         w.location.reload();
     }).on('error', function( e ) {
-        alert('Une erreur est survenue lors de la mise à jour du cache : ' + e);
+        console.log('AppCache error:', e);
     }).on('checking', function( e ) {
         console.log('Checking cache...');
     }).on('obsolete', function() {

@@ -34,9 +34,14 @@
             <div data-role="content" id="content">
                 <!-- TODO -->
                 <p id="progress-status">Il n'y a pas de ressources disponibles ici pour le moment.</p>
-                <ul>
+                <ul id="resources-list">
                 {% for r in resources %}
-                    <li><a href="{{r.href}}">{{r.title}}</a></li>
+                    <li><a data-ajax="false" href="{{r.href}}">{{r.title}}</a>
+                        <ol>
+                            {% for m in r.other_links %}
+                            <li><a data-ajax="false" href="{{m.href}}">{{m.title}}</a></li>
+                            {%endfor%}
+                        </ol></li>
                 {%endfor%}
                 </ul>
             </div>

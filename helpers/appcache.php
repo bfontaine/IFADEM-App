@@ -9,14 +9,23 @@ function update_manifest($username, $ids) {
 
     $subpath = manifest_url($username, false);
     $files = array(
-        '../js/jquery.mobile-1.3.1.min.css',
+        # Default files, included in all .appcache manifests
         '../css/main.css',
+
+        '../js/jquery.mobile-1.3.1.min.css',
         '../js/jquery-1.9.1.min.js',
         '../js/jquery.mobile-1.3.1.min.js',
         '../js/images/icons-18-white.png',
         '../js/images/ajax-loader.gif',
+
         '../js/resources.js',
-        '../imgs/ifadem-logo.png'
+
+        # jQuery Mobile icons
+        '../js/images/icons-18-white.png',
+
+        '../imgs/ifadem-logo.png',
+        '../imgs/oif.png',
+        '../imgs/auf.png'
     );
     $hash = '';
 

@@ -76,19 +76,23 @@ function resources_page() {
             continue;
         }
 
-        $tpl_links []= array(
+        $tpl_link = array(
             'title' => $r['title'],
             'href'  => $r['content']
         );
+        $tpl_mp3s = array();
 
         $mp3s = get_mp3s($r['id']);
 
         foreach ($mp3s as $_ => $m) {
-            $tpl_links []= array(
+            $tpl_mp3s[]= array(
                 'title' => $m['title'],
                 'href'  => $m['url']
             );
         }
+
+        $tpl_link['other_links'] = $tpl_mp3s;
+        $tpl_links []= $tpl_link;
     }
     
     return tpl_render('resources.html', array(
