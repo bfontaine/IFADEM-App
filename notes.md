@@ -25,9 +25,6 @@ Mercredi 26/06, 10h.
 - [x] Remplir la page « À Propos » avec les noms des gens (cf mail JBY)
 - [x] Remplir la page « Aide »
 - [ ] Filtrer (aussi) sur les tags avec le champ de filtre
-- [ ] Quand on sélectionne des livrets, mettre la taille totale des fichiers
-  sélectionnés en haut
-
 
 - [x] Corriger la taille affichée pour chaque ressources, par ex le premier
   livret du Bénin fait 311ko, la taille affichée est de 311o.
@@ -86,16 +83,20 @@ Fin octobre:
   webcache-user42.manifest)
 - [x] Partie AppCache
 - [x] Indicateur de progression pour AppCache
-- [ ] Ajouter la liste des données disponibles avec des liens sur la page du
+- [x] Ajouter la liste des données disponibles avec des liens sur la page du
       cache
 
 Novembre:
 
-- [ ] Configure `ROOT_URL` via PHP (pas manuellement s'il est vide)
-- [ ] Meilleurs messages d'erreur (`alert`)
+- [x] Configure `ROOT_URL` via PHP (pas manuellement s'il est vide)
+- [x] Meilleurs messages d'erreur (`alert`)
 - [x] Appli sur même serveur que les ressources -> abandonner le cache (config:
       `false`)
 - [x] Dupliquer les chemins des ressources retournés par les Web services en
       local pour tester sans le cache des ressources
-- [ ] Voir pourquoi la sélection de ressources prend autant de temps maintenant
-      que le cache est désactivé
+
+
+Dernières retouches:
+
+- [ ] Quand on sélectionne des livrets, mettre la taille totale des fichiers
+  sélectionnés en haut
