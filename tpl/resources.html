@@ -26,13 +26,12 @@
          # when the cache is updating.
          #
          ##}
-        <div data-role="page" id="resources-pages">
+        <div data-role="page" id="resources-page">
             <div data-role="header">
                <a href="index.php" data-ajax="false" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Retour</a>
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources en cache</h1>
             </div>
             <div data-role="content" id="content">
-                <!-- TODO -->
                 <p id="progress-status">Il n'y a pas de ressources disponibles ici pour le moment.</p>
                 <ul id="resources-list">
                 {% for r in resources %}
