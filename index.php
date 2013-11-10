@@ -101,6 +101,13 @@ function resources_page() {
     ));
 }
 
+function offline_fallback_page() {
+    $user = user();
+    return tpl_render('offline.html', array(
+        'user_id' => $user->id()
+    ));
+}
+
 function json($data) {
     header('Content-Type: application/json; charset=utf-8');
     if ($data instanceof User) {
@@ -163,8 +170,14 @@ function api($call) {
 
 // -- basic routing
 if (!isset($_GET['api'])) {
-    if (isset($_GET['p']) && $_GET['p'] == 'resources') {
-        echo resources_page();
+    if (isset($_GET['p'])) {
+        $p = $_GET['p'];
+        
+        if ($p == 'resources') {
+            echo resources_page();
+        } else if ($p == 'offline') {
+            echo offline_fallback_page();
+        }
     } else {
         echo main_page();
     }

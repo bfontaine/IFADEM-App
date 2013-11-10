@@ -53,7 +53,10 @@ function update_manifest($username, $ids) {
     $hash = md5($hash);
     $list = implode("\n", $files);
 
-    $content = "CACHE MANIFEST\n# v$hash\n$list\n";
+    $dir = current_url_dir();
+
+    $content  = "CACHE MANIFEST\n# v$hash\n$list\n\n";
+    $content .= "FALLBACK:\n$dir $dir/index.php?p=offline\n";
 
     return file_put_contents(ROOT_DIR . '/' . $subpath, $content) !== FALSE;
 }
