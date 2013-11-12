@@ -134,20 +134,24 @@ function get_resources_with_id($criteria=null, $cache=false, $root=true) {
  * value.
  **/
 function get_resource($id, $cache=false, $root=true) {
-    $res = get_resources("Reference=$id", $cache, $root);
+    static $ress = null;
 
-    if ($res) { return $res[0]; }
+    if ($ress == null) {
+        $ress = get_resources_with_id(null, false, true);
+    }
 
-    return null;
+    $id = "$id";
+    if (!array_key_exists($id, $ress)) {
+        return null;
+    }
+    return $ress[$id];
 }
 
 /**
- * Return an array of all MP3s if called without any argument,
- * and return an array of MP3s for the resource whose id is passed
- * as an argument, if any. Each MP3 is an associative array with
- * the following keys: id, resource_id, url, size.
+ * An helper for get_mp3s
  **/
-function get_mp3s($id=null, $cache=false, $root=true) {
+function get_mp3s_helper($id=null, $cache=false, $root=true) {
+    static $smp3s = null;
     $params = array();
     if ($id != null) {
         $params['critere'] = 'Reference=' . $id;
@@ -174,11 +178,47 @@ function get_mp3s($id=null, $cache=false, $root=true) {
         );
     }
 
+    /*
     if (defined('CACHE_RESOURCES') && CACHE_RESOURCES) {
         cache_mp3s_metadata($mp3s);
     }
+    */
 
     return $mp3s;
+}
+/**
+ * Same as 'get_mp3s', but mp3s are indexed by their id.
+ **/
+function get_mp3s_with_id($criteria=null, $cache=false, $root=true) {
+    $mp3s = get_mp3s_helper($criteria, $cache, $root);
+    $mp3ss = array();
+    foreach ($mp3s as $_ => $m) {
+        $id = $m['id'];
+        if (!array_key_exists($id, $mp3ss)) {
+            $mp3ss[$id] = array();
+        }
+        $mp3ss[$id] []= $m;
+    }
+    return $mp3ss;
+}
+
+/**
+ * Return an array of all MP3s if called without any argument,
+ * and return an array of MP3s for the resource whose id is passed
+ * as an argument, if any. Each MP3 is an associative array with
+ * the following keys: id, resource_id, url, size.
+ **/
+function get_mp3s($id, $cache=false, $root=true) {
+    static $mp3s = null;
+    if ($mp3s == null) {
+        $mp3s = get_mp3s_with_id($id, $cache, $root);
+    }
+
+    $d = "$id";
+    if (!array_key_exists($id, $mp3s)) {
+        return array();
+    }
+    return $mp3s[$id];
 }
 
 /**
@@ -186,9 +226,7 @@ function get_mp3s($id=null, $cache=false, $root=true) {
  * and return an array of tags for the resource whose id is passed
  * as an argument, if any. Each tag is an associative array with
  * the following keys: id, resource_id, name.
- *
- * FIXME: this function may not be needed
- **/
+ **
 function get_tags($id=null) {
     $params = array();
     if ($id != null) {
@@ -208,4 +246,4 @@ function get_tags($id=null) {
 
     return $tags;
 
-}
+}*/
