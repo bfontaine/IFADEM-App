@@ -32,7 +32,7 @@
                <h1><img class="logo square" src="imgs/ifadem-logo.png" width="136" height="102" alt="IFADEM" />Ressources en cache</h1>
             </div>
             <div data-role="content" id="content">
-                <p id="progress-status">Il n'y a pas de ressources disponibles ici pour le moment.</p>
+                <p id="progress-status"><span id="spinner"></span><span id="status">Il n'y a pas de ressources disponibles ici pour le moment.</span></p>
                 <ul id="resources-list">
                 {% for r in resources %}
                     <li><a data-ajax="false" href="{{r.href}}">{{r.title}}</a>

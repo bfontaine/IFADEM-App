@@ -25,7 +25,8 @@ function update_manifest($username, $ids) {
 
         '../imgs/ifadem-logo.png',
         '../imgs/oif.png',
-        '../imgs/auf.png'
+        '../imgs/auf.png',
+        '../imgs/ajax-loader.gif'
     );
     $hash = '';
 
