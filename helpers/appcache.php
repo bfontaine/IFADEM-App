@@ -29,12 +29,16 @@ function update_manifest($username, $ids) {
     );
     $hash = '';
 
+    $ress = get_resources_with_id(null, false, false);
+
     foreach ($ids as $_ => $id) {
 
-        $content = get_resource($id, true, false);
+        if (!array_key_exists($id, $ress)) { continue; }
+
+        $content = $ress[$id];
         if (!$content) { continue; }
 
-        $mp3s = get_mp3s($id, true, false);
+        $mp3s = get_mp3s($id, false, false);
 
         // content's PDF
         if ($content['content']) {

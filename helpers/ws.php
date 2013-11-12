@@ -118,6 +118,18 @@ function get_resources($criteria=null, $cache=false, $root=true) {
 }
 
 /**
+ * Same as 'get_resources', but resources are indexed by their id.
+ **/
+function get_resources_with_id($criteria=null, $cache=false, $root=true) {
+    $res = get_resources($criteria, $cache, $root);
+    $res2 = array();
+    foreach ($res as $_ => $r) {
+        $res2[$r['id']] = $r;
+    }
+    return $res2;
+}
+
+/**
  * Find a resource by its id. See [get_resources] for the return
  * value.
  **/
