@@ -100,3 +100,5 @@ Dernières retouches:
 
 - [ ] Quand on sélectionne des livrets, mettre la taille totale des fichiers
   sélectionnés en haut
+- [ ] LICENCE/LICENSE
+- [ ] README
