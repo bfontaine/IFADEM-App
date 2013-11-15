@@ -2,13 +2,24 @@
 /**
  *
  * Configuration file for the IFADEM Web app.
+ * =============
+ *
+ * Default values are good, the only setting you may want to change is WS_URL,
+ * which defines the URL for the Web services.
+ *
  * ---
  *
  * Current environment. Use 'dev' or 'prod'.
+ * The only thing which changes is the templates caching. When 'dev' is
+ * selected, templates are kept as-is, and when 'prod' is selected,
+ * they're compiled into PHP, which may improve a little bit the loading
+ * time.
  * Default: 'dev' */
 define('ENV', 'dev');
 /*
- * The root directory of the app.
+ * The root directory of the app (i.e. the directory where it's installed. This
+ * is set automatically to the directory of this file, so you don't have to
+ * change this).
  * Default: __DIR__ */
 define('ROOT_DIR', __DIR__);
 /*
@@ -46,7 +57,7 @@ define('MANIFESTS_ROOT', 'p');
  * Default: 'resources' */
 define('RESOURCES_CACHE_ROOT', 'resources');
 /*
- * 
+ *
  * === Localisation ===
  *
  * The default language of the website. This is used for localisation. See the
