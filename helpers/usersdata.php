@@ -138,6 +138,10 @@ function get_users_data($force=false) {
     global $data_cache;
     if (!$force && $data_cache != null) { return $data_cache; }
 
+    if (!file_exists(DATA_FILE)) {
+        file_put_contents(DATA_FILE, json_encode(array(), JSON_FORCE_OBJECT));
+    }
+
     return $data_cache = json_decode(file_get_contents(DATA_FILE), true);
 }
 

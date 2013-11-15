@@ -99,7 +99,10 @@ Novembre:
 
 Dernières retouches:
 
+- [x] Créer un usersdata.json automatiquement s'il n'existe pas
 - [ ] Quand on sélectionne des livrets, mettre la taille totale des fichiers
   sélectionnés en haut
 - [ ] LICENCE/LICENSE
 - [ ] README
+- [ ] Script install.sh pour créer les répertoires nécessaires et mettre les
+      droits dessus pour PHP
