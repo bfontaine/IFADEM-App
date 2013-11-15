@@ -35,7 +35,11 @@
                 <p id="progress-status"><span id="spinner"></span><span id="status">Il n'y a pas de ressources disponibles ici pour le moment.</span></p>
                 <ul id="resources-list">
                 {% for r in resources %}
-                    <li><a data-ajax="false" href="{{r.href}}">{{r.title}}</a>
+                {% if r.href is defined and r.href %}
+                <li><a data-ajax="false" href="{{r.href}}">{{r.title}}</a>
+                {% else %}
+                <li><span>{{r.title}}</span>
+                {% endif %}
                         <ol>
                             {% for m in r.other_links %}
                             <li><a data-ajax="false" href="{{m.href}}">{{m.title}}</a></li>

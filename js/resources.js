@@ -68,10 +68,14 @@
             setCacheStatus(msg + Math.round(e.loaded / e.total * 100) + '%');
             if (e.loaded == e.total) {
                 stopLoading();
+                setCacheStatus('Chargement des ressources terminé.');
             }
         } else {
             setCacheStatus(msg);
         }
+    }).on('noupdate', function( e ) {
+        setCacheStatus('Ressources disponibles :');
+        stopLoading();
     });
 
 

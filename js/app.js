@@ -234,6 +234,9 @@ $(function() {
                 count_sel: '.selected-count .count'
             };
 
+        function update_selected_size() {
+            // TODO
+        }
 
         // show/hide the 'cancel' button which deselect all contents
         function update_cancel_button() {

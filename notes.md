@@ -94,6 +94,7 @@ Novembre:
       `false`)
 - [x] Dupliquer les chemins des ressources retournés par les Web services en
       local pour tester sans le cache des ressources
+- [x] Ne pas mettre de lien pour les livrets sans PDF
 
 
 Dernières retouches:

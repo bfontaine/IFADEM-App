@@ -68,7 +68,7 @@ function get_resources($criteria=null, $cache=false, $root=true) {
         // FIXME: some resources may have MP3s but no content URLs, we
         // may have to return them anyway for functions that rely on this
         // one to get the complete list of resources
-        if (!$url) { continue; }
+        //if (!$url) { continue; }
 
         $r = array(
 
@@ -190,14 +190,14 @@ function get_mp3s_helper($id=null, $cache=false, $root=true) {
  * Same as 'get_mp3s', but mp3s are indexed by their id.
  **/
 function get_mp3s_with_id($criteria=null, $cache=false, $root=true) {
-    $mp3s = get_mp3s_helper($criteria, $cache, $root);
+    $mp3s = get_mp3s_helper(null, $cache, $root);
     $mp3ss = array();
     foreach ($mp3s as $_ => $m) {
-        $id = $m['id'];
-        if (!array_key_exists($id, $mp3ss)) {
-            $mp3ss[$id] = array();
+        $rid = $m['resource_id'];
+        if (!array_key_exists($rid, $mp3ss)) {
+            $mp3ss[$rid] = array();
         }
-        $mp3ss[$id] []= $m;
+        $mp3ss[$rid] []= $m;
     }
     return $mp3ss;
 }
@@ -214,7 +214,6 @@ function get_mp3s($id, $cache=false, $root=true) {
         $mp3s = get_mp3s_with_id($id, $cache, $root);
     }
 
-    $d = "$id";
     if (!array_key_exists($id, $mp3s)) {
         return array();
     }
