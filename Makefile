@@ -5,9 +5,6 @@ tpl/cache:
 	mkdir -p $@
 	chmod 777 $@
 
-php-dependencies:
-	composer install
-
 usersdata: usersdata.json p resources
 
 usersdata.json:
