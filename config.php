@@ -26,8 +26,8 @@ define('ROOT_DIR', __DIR__);
  * === Web Services ===
  *
  * The Web services base URL.
- * Default: 'https://c2i.education.fr/ifademws/ws.php' */
-define('WS_URL', 'https://c2i.education.fr/ifademws/ws.php');
+ * You MUST set this URL */
+define('WS_URL', 'https://PUT-THE-WEB-SERVICES-URL-HERE'); // <-- SET ME
 /*
  *
  * === URLS ===
