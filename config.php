@@ -1,8 +1,8 @@
 <?php
 /**
  *
- * Configuration file for the IFADEM Web app.
- * =============
+ * Configuration file for the IFADEM Web app
+ * =========================================
  *
  * Default values are good, the only setting you may want to change is WS_URL,
  * which defines the URL for the Web services.
