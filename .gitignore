@@ -12,3 +12,4 @@ __pycache__
 /utils
 composer.lock
 usersdata.json
+notes.md
