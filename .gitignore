@@ -1,9 +1,7 @@
 .DS_Store
 *~
-*.swp
-*.swo
-*.min.css
-*.min.js
+*.sw*
+*.min.*
 *.pyc
 __pycache__
 /tpl/cache
